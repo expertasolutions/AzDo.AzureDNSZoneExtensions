@@ -1,5 +1,5 @@
 {
-  "name": "aRecordManager",
+  "name": "ARecordManager",
   "version": "1.0.0",
   "description": "Tasks packages to manage Azure DNS Zone Azure DevOps release pipeline.",
   "main": "manageazurednszone.js",
