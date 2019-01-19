@@ -1,0 +1,54 @@
+{
+  "manifestVersion": 1,
+  "id": "AzureDnsZoneManager",
+  "name": "Azure DNS zone manager",
+  "version": "__Build.BuildNumber__",
+  "publisher": "experta",
+  "targets": [
+      {
+          "id": "Microsoft.VisualStudio.Services"
+      }
+  ],    
+  "description": "Tasks package for Azure DNS Zone",
+  "tags": [
+    "Azure DNS Zone",
+    "Build",
+    "Release",
+    "Azure Pipelines",
+    "macOS",
+    "linux",
+    "windows"
+  ],
+  "categories": [
+      "Azure Pipelines"
+  ],
+  "icons": {
+      "default": "icon.png"        
+  },
+  "content": {
+    "details": {
+      "path": "overview.md"
+    },
+    "license": {
+      "path": "license.md"
+    }
+  },
+  "files": [
+      {
+        "path": "aRecordManager"
+      }
+  ],
+  "public": true,
+  "contributions": [
+      {
+          "id": "custom-build-release-task",
+          "type": "ms.vss-distributed-task.task",
+          "targets": [
+              "ms.vss-distributed-task.tasks"
+          ],
+          "properties": {
+              "name": "aRecordManager"
+          }
+      }
+  ]
+}
