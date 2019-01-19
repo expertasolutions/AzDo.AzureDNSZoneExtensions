@@ -9,6 +9,9 @@ This task package is compatible with:
 - Any private build agent with Powershell and Azure CLI installed
 
 Master branch:
+https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-CI-Dev
+
+Master branch:
 <img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-CI?branchName=master">
 
 ## A Record Manager (required parameters)
