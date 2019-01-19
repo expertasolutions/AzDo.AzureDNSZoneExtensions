@@ -16,6 +16,7 @@ param (
 )
 
 $loginResult = az login -u $azureAdminUser -p $azureAdminPwd
+
 $domainInfo = az network dns record-set a list --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId | ConvertFrom-Json
 $exists = $domainInfo | Where-Object { $_.name -eq $aName }
 if($exists){
