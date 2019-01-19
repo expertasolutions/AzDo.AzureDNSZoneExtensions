@@ -19,6 +19,15 @@
     "linux",
     "windows"
   ],
+  "links":{
+      "support": { 
+          "uri": "https://github.com/lturmel/AzureDNSZoneExtensions/issues"
+      }
+  },
+  "repository": {
+    "type:" :"git",
+    "uri" : "https://github.com/lturmel/AzureDNSZoneExtensions"
+  },
   "categories": [
       "Azure Pipelines"
   ],
