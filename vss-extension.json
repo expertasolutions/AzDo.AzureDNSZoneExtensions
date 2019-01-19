@@ -35,12 +35,8 @@
       "default": "icon.png"        
   },
   "content": {
-    "details": {
-      "path": "readme.md"
-    },
-    "license": {
-      "path": "license"
-    }
+    "details": { "path": "readme.md" },
+    "license": { "path": "license" }
   },
   "files": [
       {
