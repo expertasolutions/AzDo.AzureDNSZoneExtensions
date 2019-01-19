@@ -19,12 +19,18 @@ $loginResult = az login -u $azureAdminUser -p $azureAdminPwd
 $domainInfo = az network dns record-set a list --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId | ConvertFrom-Json
 $exists = $domainInfo | Where-Object { $_.name -eq $aName }
 if($exists){
-  write-host "Updating '$($aName).$domainName exists $($exists.arecords[0].ipv4Address)' to '$($ipAddress)' ... " -NoNewline
-  $result = az network dns record-set a update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --set "arecords[0].ipv4Address=$ipAddress" --force-string | ConvertFrom-Json
-  write-host "Done"
+  write-host "'$($aName).$domainName' -> Current IP: '$($exists.arecords[0].ipv4Address)' New IP: '$($ipAddress)' ... " -NoNewline
+  
+  if($exists.arecords[0].ipv4Address -eq $ipAddress) {
+    write-host "Nothing to change"  
+  } else {
+    $result = az network dns record-set a update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --set "arecords[0].ipv4Address=$ipAddress" --force-string | ConvertFrom-Json
+    write-host "Record updated !"
+  }
+
 } else {
   write-host "Creating '$($aName).$domainName' ... " -NoNewline
   $result = az network dns record-set a add-record --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --record-set-name $aName --ipv4-address $ipAddress | ConvertFrom-Json
-  write-host "Done";
+  write-host "Record created !";
 }
 $logoutResult = az logout
