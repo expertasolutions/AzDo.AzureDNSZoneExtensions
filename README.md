@@ -6,6 +6,7 @@ Tasks provides:
 This task package is compatible with:
 - Hosted macOS build agent (supported)
 - Hosted VS2017 (supported)
+
 - Any private build agent with Powershell and Azure CLI installed
 
 <img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-CI?branchName=master">
