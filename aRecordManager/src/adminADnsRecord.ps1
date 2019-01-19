@@ -20,7 +20,7 @@ $loginResult = az login -u $azureAdminUser -p $azureAdminPwd
 $domainInfo = az network dns record-set a list --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId | ConvertFrom-Json
 $exists = $domainInfo | Where-Object { $_.name -eq $aName }
 if($exists){
-  write-host "'$($aName).$domainName' -> Current IP: '$($exists.arecords[0].ipv4Address)' New IP: '$($ipAddress)' ... " -NoNewline
+  write-host "'$($aName).$domainName' -> Current IP: '$($exists.arecords[0].ipv4Address)' vs New IP: '$($ipAddress)' ... " -NoNewline
   
   if($exists.arecords[0].ipv4Address -eq $ipAddress) {
     write-host "Nothing to change"  
