@@ -10,10 +10,10 @@ This task package is compatible with:
 
 ## Build status
 
-Dev branch:
+- Dev branch:
 <img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-Dev-CI?branchName=Dev">
 
-Master branch:
+- Master branch:
 <img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-Master-CI?branchName=master">
 
 ## A Record Manager (required parameters)
