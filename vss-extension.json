@@ -21,12 +21,12 @@
   ],
   "links":{
       "support": { 
-          "uri": "https://github.com/lturmel/AzureDNSZoneExtensions/issues"
+          "uri": "https://github.com/expertasolutions/AzureDNSZoneExtensions/issues"
       }
   },
   "repository": {
     "type" : "git",
-    "uri" : "https://github.com/lturmel/AzureDNSZoneExtensions"
+    "uri" : "https://github.com/expertasolutions/AzureDNSZoneExtensions"
   },
   "categories": [
       "Azure Pipelines"
