@@ -25,3 +25,8 @@ This task package is compatible with:
 # Requirements
 
 - Azure CLI must be installed on the build agent
+
+# What's next
+- Tasks Unit tests
+- Tasks Intégration tests
+- DNS Zone Manager (Task to create DNS Zone in Azure)d
