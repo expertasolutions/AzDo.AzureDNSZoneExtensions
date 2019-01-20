@@ -29,4 +29,4 @@ This task package is compatible with:
 # What's next
 - Tasks Unit tests
 - Tasks Integration tests
-- DNS Zone Manager (Task to create DNS Zone in Azure)d
+- DNS Zone Manager (Task to create DNS Zone in Azure)
