@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "AzureDnsZoneManager",
   "name": "Azure DNS zone manager",
-  "version": "__Build.BuildNumber__",
+  "version": "__major__.__minor__.__patch__",
   "publisher": "experta",
   "targets": [
       {
