@@ -8,9 +8,13 @@ This task package is compatible with:
 - Hosted VS2017 (supported)
 - Any private build agent with Powershell and Azure CLI installed
 
-## Build status
-- Dev branch: <img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-Dev-CI?branchName=Dev">
-- Master branch: <img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-Master-CI?branchName=master">
+## Branches builds status
+- Dev -> <img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-CI?branchName=Dev"/>
+- Master -> <img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-CI?branchName=master"/>
+
+## Release status
+- QA -> <img src="https://vsrm.dev.azure.com/experta/_apis/public/Release/badge/5b43050d-0a01-4269-ace5-9e22c920391c/12/40"/>
+- VS-Marketplace -> <img src="https://vsrm.dev.azure.com/experta/_apis/public/Release/badge/5b43050d-0a01-4269-ace5-9e22c920391c/12/42"/>
 
 ## A Record Manager (required parameters)
 - Azure subscription
