@@ -9,12 +9,40 @@ This task package is compatible with:
 - Any private build agent with Powershell and Azure CLI installed
 
 ## Builds status
-- Dev -> <img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-CI?branchName=Dev"/>
-- Master -> <img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-CI?branchName=master"/>
+<table>
+  <thead>
+    <tr>
+      <th>Branch</th>
+      <th>Status</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Master</td>
+      <td><img src="https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-CI?branchName=master"/></td>
+    <tr>
+  </tbody>
+</table>
 
 ## Release status
-- QA -> <img src="https://vsrm.dev.azure.com/experta/_apis/public/Release/badge/5b43050d-0a01-4269-ace5-9e22c920391c/12/40"/>
-- VS-Marketplace -> <img src="https://vsrm.dev.azure.com/experta/_apis/public/Release/badge/5b43050d-0a01-4269-ace5-9e22c920391c/12/42"/>
+<table>
+  <thead>
+    <tr>
+      <th>Release</th>
+      <th>Status</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>QA</td>
+      <td><img src="https://vsrm.dev.azure.com/experta/_apis/public/Release/badge/5b43050d-0a01-4269-ace5-9e22c920391c/12/40"/></td>
+    </tr>
+    <tr>
+      <td>VS-Marketplace</td>
+      <td><img src="https://vsrm.dev.azure.com/experta/_apis/public/Release/badge/5b43050d-0a01-4269-ace5-9e22c920391c/12/42"/></td>
+    </tr>
+  </tbody>
+</table>
 
 ## A Record Manager (required parameters)
 - Azure subscription
