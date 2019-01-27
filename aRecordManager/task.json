@@ -103,7 +103,7 @@
       {
         "target":"domainName",
         "endpointId":"$(azureSubscriptionEndpoint)",
-        "endpointUrl":"{{{endpoint.url}}/subscriptions/{{{endpoint.subscriptionId}}}/resourceGroups/$(resourceGroupName)/providers/Microsoft.Network/dnsZones?api-version=2018-03-01-preview",
+        "endpointUrl":"{{{endpoint.url}}}/subscriptions/{{{endpoint.subscriptionId}}}/resourceGroups/$(resourceGroupName)/providers/Microsoft.Network/dnsZones?api-version=2018-03-01-preview",
         "resultSelector":"jsonpath:$.value[*]",
         "resultTemplate":"{{{name}}}"
       }
