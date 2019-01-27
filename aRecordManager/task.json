@@ -8,6 +8,7 @@
     "visibility": [
         "Release"
     ],
+    "preview": true,
     "author": "Solutions Experta Inc.",
     "version": {
         "Major": "__major__",
@@ -56,8 +57,8 @@
         },
         {
           "name": "resourceGroupName",
-          "type": "string",
           "label": "DNS Zone resource group name",
+          "type": "pickList",
           "defaultValue": "",
           "required": true,
           "helpMarkDown": "",
@@ -90,6 +91,15 @@
           "helpMarkDown":"",
           "groupName": "dnszonedetail"
         }
+    ],
+    "dataSourceBindings" : [
+      {
+        "target": "resourceGroupName",
+        "endpointId": "$(azureSubscriptionEndpoint)",
+        "endpointUrl": "{{{endpoint.url}}}/subscriptions/{{{endpoint.subscriptionId}}}/providers/Microsoft.Network/dnsZones?api-version=2017-08-31",
+        "resultSelector": "jsonpath:$.value[*]",
+        "resultTemplate": "{{{ #extractResource id resourcegroups}}}"
+      }
     ],
     "outputVariables" : [],
     "execution": {
