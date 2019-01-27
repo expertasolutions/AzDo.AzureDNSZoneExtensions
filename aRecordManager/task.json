@@ -8,7 +8,6 @@
     "visibility": [
         "Release"
     ],
-    "preview": true,
     "author": "Solutions Experta Inc.",
     "version": {
         "Major": "__major__",
