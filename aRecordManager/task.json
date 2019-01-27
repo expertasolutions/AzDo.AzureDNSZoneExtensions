@@ -96,7 +96,7 @@
       {
         "target": "resourceGroupName",
         "endpointId": "$(azureSubscriptionEndpoint)",
-        "endpointUrl": "{{{endpoint.url}}}/subscriptions/{{{endpoint.subscriptionId}}}/providers/Microsoft.Network/managedClusters?api-version=2017-08-31",
+        "endpointUrl": "{{{endpoint.url}}}/subscriptions/{{{endpoint.subscriptionId}}}/providers/Microsoft.Network/dnsZones?api-version=2018-03-01-preview",
         "resultSelector": "jsonpath:$.value[*]",
         "resultTemplate": "{{{ #extractResource id resourcegroups}}}"
       }
