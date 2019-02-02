@@ -2,8 +2,6 @@
   "manifestVersion": 1,
   "id": "AzureDnsZoneManager",
   "name": "Azure DNS zone manager",
-  "version": "0.0.0",
-  "publisher": "experta",
   "targets": [
       {
           "id": "Microsoft.VisualStudio.Services"
@@ -43,7 +41,6 @@
         "path": "aRecordManager"
       }
   ],
-  "public": true,
   "contributions": [
       {
           "id": "custom-build-release-task",
