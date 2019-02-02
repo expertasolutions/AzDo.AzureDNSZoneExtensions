@@ -13,9 +13,18 @@ param (
   [string]$aName
 , [Parameter(Mandatory=$true, Position=7)]
   [string]$ipAddress
+, [Parameter(Mandatory=$true, Position=8)]
+  [string]$servicePrincipalId
+, [Parameter(Mandatory=$true, Position=9)]
+  [string]$servicePrincipalKey
+, [Parameter(Mandatory=$true, Position=10)]
+  [string]$tenantId
 )
 
-$loginResult = az login -u $azureAdminUser -p $azureAdminPwd
+#$loginResult = az login -u $azureAdminUser -p $azureAdminPwd
+
+$loginResult = az login --service-principal -u $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId
+$setSubResult = az account set --subscription $subscriptionId
 
 $domainInfo = az network dns record-set a list --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId | ConvertFrom-Json
 $exists = $domainInfo | Where-Object { $_.name -eq $aName }
@@ -34,4 +43,4 @@ if($exists){
   $result = az network dns record-set a add-record --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --record-set-name $aName --ipv4-address $ipAddress | ConvertFrom-Json
   write-host "Record created !";
 }
-$logoutResult = az logout
+$logoutResult = az account clear

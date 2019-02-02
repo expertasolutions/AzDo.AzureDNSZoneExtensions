@@ -14,7 +14,7 @@ var shell = require('node-powershell');
 
 try {
     
-    var azureEndpointSubscriptionId = tl.getInput("azureSubscriptionEndpoint", true);
+    var azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true);
     var adminuser = tl.getInput("azadadminuser", true);
     var adminpwd = tl.getInput("azadadminpwd", true);
     var resourceGroupName = tl.getInput("resourceGroupName", true);
@@ -22,7 +22,11 @@ try {
     var aName = tl.getInput("aName", true);
     var ipAddress = tl.getInput("ipAddress", true);
     
-    var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscriptionId, "subscriptionId", false);
+    var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false);
+
+    var servicePrincipalId = tl.getEnpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalid", false);
+    var servicePrincipalKey = tl.getEndpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalkey", false);
+    var tenantId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription,"tenantid", false);
 
     console.log("SubscriptionId: " + subcriptionId);
     console.log("AdminAdUser: " + adminuser);
@@ -31,6 +35,9 @@ try {
     console.log("DomainName: " + domainName);
     console.log("A Name: " + aName);
     console.log("Ip Address: " + ipAddress);
+    console.log("ServicePrincipalId: " + servicePrincipalId);
+    console.log("ServicePrincipalKey: " + servicePrincipalKey);
+    console.log("TenantId: " + tenantId);
     
     var pwsh = new shell({
         executionPolicy: 'Bypass',
