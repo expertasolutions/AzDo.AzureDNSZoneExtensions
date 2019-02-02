@@ -7,11 +7,6 @@
     "category": "Utility",
     "preview": true,
     "author": "Solutions Experta Inc.",
-    "version": {
-        "major": "0",
-        "minor": "0",
-        "patch": "0"
-    },
     "instanceNameFormat": "Create/Update A Dns record",
     "groups": [
         {
