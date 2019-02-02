@@ -17,10 +17,7 @@ param (
   [string]$ipAddress
 )
 
-write-host "Login to Azure ... "
 $loginResult = az login --service-principal -u $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId
-
-write-host "Set the azure account to $subscriptionId ..."
 $setSubResult = az account set --subscription $subscriptionId
 
 $domainInfo = az network dns record-set a list --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId | ConvertFrom-Json
