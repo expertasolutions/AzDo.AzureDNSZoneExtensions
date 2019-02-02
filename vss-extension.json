@@ -2,13 +2,12 @@
   "manifestVersion": 1,
   "id": "AzureDnsZoneManager",
   "name": "Azure DNS zone manager",
-  "version": "__major__.__minor__.__patch__",
-  "publisher": "experta",
   "targets": [
       {
           "id": "Microsoft.VisualStudio.Services"
       }
   ],    
+  "publisher" : "ExpertaPreview",
   "description": "Tasks package for Azure DNS Zone",
   "tags": [
     "Azure DNS Zone",
@@ -43,7 +42,6 @@
         "path": "aRecordManager"
       }
   ],
-  "public": true,
   "contributions": [
       {
           "id": "custom-build-release-task",

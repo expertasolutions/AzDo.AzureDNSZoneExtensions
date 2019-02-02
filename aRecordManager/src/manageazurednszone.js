@@ -14,19 +14,22 @@ var shell = require('node-powershell');
 
 try {
     
-    var azureEndpointSubscriptionId = tl.getInput("azureSubscriptionEndpoint", true);
-    var adminuser = tl.getInput("azadadminuser", true);
-    var adminpwd = tl.getInput("azadadminpwd", true);
+    var azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true);
     var resourceGroupName = tl.getInput("resourceGroupName", true);
     var domainName = tl.getInput("domainName", true);
     var aName = tl.getInput("aName", true);
     var ipAddress = tl.getInput("ipAddress", true);
     
-    var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscriptionId, "subscriptionId", false);
+    var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false);
+
+    var servicePrincipalId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalid", false);
+    var servicePrincipalKey = tl.getEndpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalkey", false);
+    var tenantId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription,"tenantid", false);
 
     console.log("SubscriptionId: " + subcriptionId);
-    console.log("AdminAdUser: " + adminuser);
-    console.log("AdminAdPwd: " + adminpwd);
+    console.log("ServicePrincipalId: " + servicePrincipalId);
+    console.log("ServicePrincipalKey: " + servicePrincipalKey);
+    console.log("TenantId: " + tenantId);
     console.log("ResourceGroupName: " + resourceGroupName);
     console.log("DomainName: " + domainName);
     console.log("A Name: " + aName);
@@ -38,7 +41,8 @@ try {
     });
     
     pwsh.addCommand(__dirname  + "/adminADnsRecord.ps1 -subscriptionId '" + subcriptionId
-        + "' -azureAdminUser '" + adminuser + "' -azureAdminPwd '" + adminpwd 
+        + "' -servicePrincipalId '" + servicePrincipalId + "' -servicePrincipalKey '" + servicePrincipalKey
+        + "' -tenantId '" + tenantId
         + "' -resourceGroupName '" + resourceGroupName + "' -domainName '" + domainName 
         + "' -aName '" + aName + "' -ipAddress '" + ipAddress + "'")
         .then(function() {
