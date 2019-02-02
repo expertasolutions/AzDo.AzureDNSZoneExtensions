@@ -45,11 +45,7 @@ This task package is compatible with:
 </table>
 
 ## A Record Manager (required parameters)
-- Azure subscription
-- Azure Resource Group
-- Azure DNS Zone
-- A record to manage
-- IP Address
+!(img/ARecord_v2.jpg)
 
 # Requirements
 

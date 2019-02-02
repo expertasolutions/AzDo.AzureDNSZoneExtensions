@@ -23,6 +23,9 @@
           "uri": "https://github.com/expertasolutions/AzureDNSZoneExtensions/issues"
       }
   },
+  "screenshots": [
+    { "path": "img/ARecord_v2.jpg"}
+  ],
   "repository": {
     "type" : "git",
     "uri" : "https://github.com/expertasolutions/AzureDNSZoneExtensions"
