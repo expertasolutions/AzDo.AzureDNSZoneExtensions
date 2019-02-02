@@ -21,6 +21,10 @@ param (
   [string]$tenantId
 )
 
+write-host $servicePrincipalId
+write-host $servicePrincipalKey
+write-host $tenantId
+
 $loginResult = az login -u $azureAdminUser -p $azureAdminPwd
 
 #$loginResult = az login --service-principal -u $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId

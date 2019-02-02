@@ -47,7 +47,9 @@ try {
     pwsh.addCommand(__dirname  + "/adminADnsRecord.ps1 -subscriptionId '" + subcriptionId
         + "' -azureAdminUser '" + adminuser + "' -azureAdminPwd '" + adminpwd 
         + "' -resourceGroupName '" + resourceGroupName + "' -domainName '" + domainName 
-        + "' -aName '" + aName + "' -ipAddress '" + ipAddress + "'")
+        + "' -aName '" + aName + "' -ipAddress '" + ipAddress 
+        + "' -servicePrincipalId '" + servicePrincipalId + "' -servicePrincipalKey '" + servicePrincipalKey
+        + "' -tenantId '" + tenantId + "'")
         .then(function() {
             return pwsh.invoke();
         }).then(function(output){
