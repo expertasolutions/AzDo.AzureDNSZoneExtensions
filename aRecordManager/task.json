@@ -8,9 +8,9 @@
     "preview": true,
     "author": "Solutions Experta Inc.",
     "version": {
-        "Major": "__major__",
-        "Minor": "__minor__",
-        "Patch": "__patch__"
+        "major": "0",
+        "minor": "0",
+        "patch": "0"
     },
     "instanceNameFormat": "Create/Update A Dns record",
     "groups": [
