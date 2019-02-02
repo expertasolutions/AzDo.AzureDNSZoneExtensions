@@ -24,7 +24,7 @@ try {
     
     var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false);
 
-    var servicePrincipalId = tl.getEnpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalid", false);
+    var servicePrincipalId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalid", false);
     var servicePrincipalKey = tl.getEndpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalkey", false);
     var tenantId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription,"tenantid", false);
 
