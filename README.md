@@ -45,7 +45,7 @@ This task package is compatible with:
 </table>
 
 ## A Record Manager (required parameters)
-!(img/ARecord_v2.jpg)
+![ARecord_Task_inputs](img/ARecord_v2.jpg)
 
 # Requirements
 
