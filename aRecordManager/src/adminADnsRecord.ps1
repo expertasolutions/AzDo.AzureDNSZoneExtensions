@@ -21,14 +21,11 @@ param (
   [string]$tenantId
 )
 
-write-host $servicePrincipalId
-write-host $servicePrincipalKey
-write-host $tenantId
+write-host "Login to Azure ... "
+$loginResult = az login --service-principal -u $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId
 
-$loginResult = az login -u $azureAdminUser -p $azureAdminPwd
-
-#$loginResult = az login --service-principal -u $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId
-#$setSubResult = az account set --subscription $subscriptionId
+write-host "Set the azure account to $subscriptionId ..."
+$setSubResult = az account set --subscription $subscriptionId
 
 $domainInfo = az network dns record-set a list --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId | ConvertFrom-Json
 $exists = $domainInfo | Where-Object { $_.name -eq $aName }
