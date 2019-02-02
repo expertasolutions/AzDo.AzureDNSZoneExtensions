@@ -40,6 +40,9 @@
   "files": [
       {
         "path": "aRecordManager"
+      }, {
+          "path": "img",
+          "addressable": true
       }
   ],
   "contributions": [
