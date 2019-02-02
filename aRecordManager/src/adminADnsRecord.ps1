@@ -21,10 +21,10 @@ param (
   [string]$tenantId
 )
 
-#$loginResult = az login -u $azureAdminUser -p $azureAdminPwd
+$loginResult = az login -u $azureAdminUser -p $azureAdminPwd
 
-$loginResult = az login --service-principal -u $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId
-$setSubResult = az account set --subscription $subscriptionId
+#$loginResult = az login --service-principal -u $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId
+#$setSubResult = az account set --subscription $subscriptionId
 
 $domainInfo = az network dns record-set a list --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId | ConvertFrom-Json
 $exists = $domainInfo | Where-Object { $_.name -eq $aName }
