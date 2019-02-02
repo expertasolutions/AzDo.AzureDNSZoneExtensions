@@ -29,15 +29,13 @@ try {
     var tenantId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription,"tenantid", false);
 
     console.log("SubscriptionId: " + subcriptionId);
-    console.log("AdminAdUser: " + adminuser);
-    console.log("AdminAdPwd: " + adminpwd);
+    console.log("ServicePrincipalId: " + servicePrincipalId);
+    console.log("ServicePrincipalKey: " + servicePrincipalKey);
+    console.log("TenantId: " + tenantId);
     console.log("ResourceGroupName: " + resourceGroupName);
     console.log("DomainName: " + domainName);
     console.log("A Name: " + aName);
     console.log("Ip Address: " + ipAddress);
-    console.log("ServicePrincipalId: " + servicePrincipalId);
-    console.log("ServicePrincipalKey: " + servicePrincipalKey);
-    console.log("TenantId: " + tenantId);
     
     var pwsh = new shell({
         executionPolicy: 'Bypass',
@@ -45,11 +43,10 @@ try {
     });
     
     pwsh.addCommand(__dirname  + "/adminADnsRecord.ps1 -subscriptionId '" + subcriptionId
-        + "' -azureAdminUser '" + adminuser + "' -azureAdminPwd '" + adminpwd 
-        + "' -resourceGroupName '" + resourceGroupName + "' -domainName '" + domainName 
-        + "' -aName '" + aName + "' -ipAddress '" + ipAddress 
         + "' -servicePrincipalId '" + servicePrincipalId + "' -servicePrincipalKey '" + servicePrincipalKey
-        + "' -tenantId '" + tenantId + "'")
+        + "' -tenantId '" + tenantId
+        + "' -resourceGroupName '" + resourceGroupName + "' -domainName '" + domainName 
+        + "' -aName '" + aName + "' -ipAddress '" + ipAddress + "'")
         .then(function() {
             return pwsh.invoke();
         }).then(function(output){

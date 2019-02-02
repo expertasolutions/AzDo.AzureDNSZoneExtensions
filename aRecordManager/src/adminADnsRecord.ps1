@@ -1,24 +1,20 @@
 param (
   [Parameter(Mandatory=$true, Position=1)]
   [string]$subscriptionId
-, [Parameter(Mandatory=$true, Position=2)]
-  [string]$azureAdminUser
-, [Parameter(Mandatory=$true, Position=3)]
-  [string]$azureAdminPwd
-, [Parameter(Mandatory=$true, Position=4)]
-  [string]$resourceGroupName
-, [Parameter(Mandatory=$true, Position=5)]
-  [string]$domainName
-, [Parameter(Mandatory=$true, Position=6)]
-  [string]$aName
-, [Parameter(Mandatory=$true, Position=7)]
-  [string]$ipAddress
-, [Parameter(Mandatory=$true, Position=8)]
+  , [Parameter(Mandatory=$true, Position=2)]
   [string]$servicePrincipalId
-, [Parameter(Mandatory=$true, Position=9)]
+, [Parameter(Mandatory=$true, Position=3)]
   [string]$servicePrincipalKey
-, [Parameter(Mandatory=$true, Position=10)]
+, [Parameter(Mandatory=$true, Position=4)]
   [string]$tenantId
+, [Parameter(Mandatory=$true, Position=5)]
+  [string]$resourceGroupName
+, [Parameter(Mandatory=$true, Position=6)]
+  [string]$domainName
+, [Parameter(Mandatory=$true, Position=7)]
+  [string]$aName
+, [Parameter(Mandatory=$true, Position=8)]
+  [string]$ipAddress
 )
 
 write-host "Login to Azure ... "
