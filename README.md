@@ -46,8 +46,6 @@ This task package is compatible with:
 
 ## A Record Manager (required parameters)
 - Azure subscription
-- Azure AD Admin user
-- Azure AD Admin password
 - Azure Resource Group
 - Azure DNS Zone
 - A record to manage

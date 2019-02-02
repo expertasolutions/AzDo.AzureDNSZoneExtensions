@@ -15,8 +15,6 @@ var shell = require('node-powershell');
 try {
     
     var azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true);
-    var adminuser = tl.getInput("azadadminuser", true);
-    var adminpwd = tl.getInput("azadadminpwd", true);
     var resourceGroupName = tl.getInput("resourceGroupName", true);
     var domainName = tl.getInput("domainName", true);
     var aName = tl.getInput("aName", true);
