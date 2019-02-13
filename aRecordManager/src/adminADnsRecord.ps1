@@ -1,21 +1,25 @@
 param (
   [Parameter(Mandatory=$true, Position=1)]
   [string]$subscriptionId
-  , [Parameter(Mandatory=$true, Position=2)]
+, [Parameter(Mandatory=$true, Position=2)]
   [string]$servicePrincipalId
 , [Parameter(Mandatory=$true, Position=3)]
   [string]$servicePrincipalKey
 , [Parameter(Mandatory=$true, Position=4)]
   [string]$tenantId
 , [Parameter(Mandatory=$true, Position=5)]
-  [string]$resourceGroupName
+  [string]$actionType
 , [Parameter(Mandatory=$true, Position=6)]
-  [string]$domainName
+  [string]$resourceGroupName
 , [Parameter(Mandatory=$true, Position=7)]
-  [string]$aName
+  [string]$domainName
 , [Parameter(Mandatory=$true, Position=8)]
+  [string]$aName
+, [Parameter(Mandatory=$true, Position=9)]
   [string]$ipAddress
 )
+
+write-host $actionType
 
 $loginResult = az login --service-principal -u $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId
 $setSubResult = az account set --subscription $subscriptionId
