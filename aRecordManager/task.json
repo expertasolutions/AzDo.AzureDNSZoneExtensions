@@ -39,7 +39,7 @@
           "type": "pickList",
           "defaultValue": "Create/Update",
           "options": {
-            "createUpdate": "Create/Update",
+            "createUpdate": "Create / Update",
             "remove": "Remove"
           },
           "required": false,
