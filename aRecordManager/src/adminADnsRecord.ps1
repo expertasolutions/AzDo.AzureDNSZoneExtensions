@@ -42,8 +42,9 @@ if($actionType -eq "createUpdate") {
   }
 } elseif($actionType -eq "remove") {
   if($exists){
-    write-host "'$($aName).$domainName' -> Current IP: '$($exists.arecords[0].ipv4Address)' vs New IP: '$($ipAddress)' ... " -NoNewline
+    write-host "Removing '$($aName).$domainName' with IP '$($exists.arecords[0].ipv4Address)' ... " -NoNewline
     $result = az network dns record-set a delete --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --yes
+    write-host "Done"
   } else {
     write-host "'$($aName).$domainName' not existing..."
   }
