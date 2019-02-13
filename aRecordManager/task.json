@@ -38,10 +38,10 @@
           "label": "Action type",
           "type": "pickList",
           "defaultValue": "Create/Update",
-          "value": [
-            "Create/Update",
-            "Remove"
-          ],
+          "options": {
+            "createUpdate": "Create/Update",
+            "remove": "Remove"
+          },
           "required": false,
           "groupName": "dnszonedetail"
         },
