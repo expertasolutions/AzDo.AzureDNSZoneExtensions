@@ -34,6 +34,18 @@
           "required": true
         },
         {
+          "name": "actionType",
+          "label": "Action type",
+          "type": "pickList",
+          "defaultValue": "Create/Update",
+          "options": {
+            "createUpdate": "Create / Update",
+            "remove": "Remove"
+          },
+          "required": false,
+          "groupName": "dnszonedetail"
+        },
+        {
           "name": "resourceGroupName",
           "label": "DNS Zone resource group name",
           "type": "pickList",

@@ -19,6 +19,7 @@ try {
     var domainName = tl.getInput("domainName", true);
     var aName = tl.getInput("aName", true);
     var ipAddress = tl.getInput("ipAddress", true);
+    var actionType = tl.getInput("actionType", true);
     
     var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false);
 
@@ -31,6 +32,7 @@ try {
     console.log("ServicePrincipalKey: " + servicePrincipalKey);
     console.log("TenantId: " + tenantId);
     console.log("ResourceGroupName: " + resourceGroupName);
+    console.log("ActionType: " + actionType);
     console.log("DomainName: " + domainName);
     console.log("A Name: " + aName);
     console.log("Ip Address: " + ipAddress);
@@ -43,7 +45,8 @@ try {
     pwsh.addCommand(__dirname  + "/adminADnsRecord.ps1 -subscriptionId '" + subcriptionId
         + "' -servicePrincipalId '" + servicePrincipalId + "' -servicePrincipalKey '" + servicePrincipalKey
         + "' -tenantId '" + tenantId
-        + "' -resourceGroupName '" + resourceGroupName + "' -domainName '" + domainName 
+        + "' -actionType '" + actionType + "' "
+        + "-resourceGroupName '" + resourceGroupName + "' -domainName '" + domainName 
         + "' -aName '" + aName + "' -ipAddress '" + ipAddress + "'")
         .then(function() {
             return pwsh.invoke();
