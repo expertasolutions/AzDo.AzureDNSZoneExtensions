@@ -5,6 +5,7 @@
     "description": "Task to create/update an 'A' Dns Record",
     "helpMarkDown": "",
     "category": "Utility",
+    "preview": true,
     "author": "Solutions Experta Inc.",
     "version": {
         "Major": 0,
