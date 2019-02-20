@@ -2,6 +2,7 @@ Tasks packages to manage Azure DNS Zone Azure DevOps release pipeline.
 
 Tasks provides:
 - A Record Manager
+- CName Record Manager
 
 This task package is compatible with:
 - Hosted macOS build agent (supported)

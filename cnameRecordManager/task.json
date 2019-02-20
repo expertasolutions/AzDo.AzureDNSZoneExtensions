@@ -1,8 +1,8 @@
 {
-  "id": "8fa28bb0-58e5-4a23-b37c-d709b72fad3f",
-    "name": "ARecordManager",
-    "friendlyName": "A record DNS Manager",
-    "description": "Task to create/update an 'A' Dns Record",
+  "id": "4c62cc28-b99a-4849-a717-b474839fe883",
+    "name": "CNAMERecordManager",
+    "friendlyName": "CNAME record DNS Manager",
+    "description": "Task to create/update a 'CNAME' Dns Record",
     "helpMarkDown": "",
     "category": "Utility",
     "preview": true,
@@ -12,7 +12,7 @@
         "Minor": 0,
         "Patch": 0
     },
-    "instanceNameFormat": "Manage A Dns record",
+    "instanceNameFormat": "Manage CNAME Dns record",
     "groups": [
         {
           "name": "subazadadmin",
@@ -65,18 +65,18 @@
           "groupName": "dnszonedetail"
         },
         {
-          "name": "aName",
+          "name": "cname",
           "type": "string",
-          "label": "A record",
+          "label": "CNAME record",
           "defaultValue": "",
           "required": true,
           "helpMarkDown": "",
           "groupName": "dnszonedetail"
         },
         {
-          "name": "ipAddress",
+          "name": "alias",
           "type":"string",
-          "label": "Ip Address",
+          "label": "Alias",
           "defaultValue":"",
           "required": true,
           "helpMarkDown":"",
@@ -102,7 +102,7 @@
     "outputVariables" : [],
     "execution": {
         "Node": {
-          "target": "src//manageazurednszone.js",
+          "target": "src//managecnamerecord.js",
           "argumentFormat": ""
         }
       }
