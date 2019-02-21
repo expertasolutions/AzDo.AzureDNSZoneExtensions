@@ -22,33 +22,32 @@ param (
 $loginResult = az login --service-principal -u $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId
 $setSubResult = az account set --subscription $subscriptionId
 
-$domainInfo = az network dns record-set a list --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId | ConvertFrom-Json
+$domainInfo = az network dns record-set cname list --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId | ConvertFrom-Json
 $exists = $domainInfo | Where-Object { $_.name -eq $cname }
 
 if($actionType -eq "createUpdate") {
   if($exists){
-    write-host "'$($cname).$domainName' -> Current ALIAS: '$($exists.arecords[0].ipv4Address)' vs New IP: '$($ipAddress)' ... " -NoNewline
+    write-host "'$($cname).$domainName' -> Current ALIAS: '$($exists.arecords[0].ipv4Address)' vs New IP: '$($alias)' ... " -NoNewline
     
     if($exists.arecords[0].ipv4Address -eq $ipAddress) {
       write-host "Nothing to change"  
     } else {
-      #$result = az network dns record-set a update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --set "arecords[0].ipv4Address=$ipAddress" --force-string | ConvertFrom-Json
+      #$result = az network dns record-set cname update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $cname --set "arecords[0].ipv4Address=$ipAddress" --force-string | ConvertFrom-Json
       write-host "Record updated !"
     }
   } else {
     write-host "Creating '$($cname).$domainName' ... " -NoNewline
-    #$result = az network dns record-set a add-record --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --record-set-name $aName --ipv4-address $ipAddress | ConvertFrom-Json
+    #$result = az network dns record-set cname add-record --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --record-set-name $cname --ipv4-address $ipAddress | ConvertFrom-Json
     write-host "Record created !";
   }
 } elseif($actionType -eq "remove") {
   if($exists){
     #write-host "Removing '$($cname).$domainName' with Alias '$($exists.arecords[0].ipv4Address)' ... " -NoNewline
-    #$result = az network dns record-set a delete --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $cname --yes
+    #$result = az network dns record-set cname delete --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $cname --yes
     write-host "Done"
   } else {
     write-host "'$($cname).$domainName' not existing..."
   }
 }
-
 
 $logoutResult = az account clear
