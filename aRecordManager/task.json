@@ -80,7 +80,8 @@
           "defaultValue":"",
           "required": true,
           "helpMarkDown":"",
-          "groupName": "dnszonedetail"
+          "groupName": "dnszonedetail",
+          "visibleRule": "actionType = createUpdate"
         }
     ],
     "dataSourceBindings" : [
