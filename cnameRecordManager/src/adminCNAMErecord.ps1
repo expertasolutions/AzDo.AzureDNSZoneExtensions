@@ -27,22 +27,22 @@ $exists = $domainInfo | Where-Object { $_.name -eq $cname }
 
 if($actionType -eq "createUpdate") {
   if($exists){
-    write-host "'$($cname).$domainName' -> Current ALIAS: '$($exists.arecords[0].ipv4Address)' vs New IP: '$($alias)' ... " -NoNewline
+    write-host "'$($cname).$domainName' -> Current ALIAS: '$($exists.cnameRecord[0].cname)' vs New Record: '$($alias)' ... " -NoNewline
     
-    if($exists.arecords[0].ipv4Address -eq $ipAddress) {
+    if($exists.cnameRecord[0].cname -eq $alias) {
       write-host "Nothing to change"  
     } else {
-      #$result = az network dns record-set cname update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $cname --set "arecords[0].ipv4Address=$ipAddress" --force-string | ConvertFrom-Json
+      #$result = az network dns record-set cname update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $cname --set "cnameRecord[0].cname=$alias" --force-string | ConvertFrom-Json
       write-host "Record updated !"
     }
   } else {
     write-host "Creating '$($cname).$domainName' ... " -NoNewline
-    #$result = az network dns record-set cname add-record --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --record-set-name $cname --ipv4-address $ipAddress | ConvertFrom-Json
+    #$result = az network dns record-set cname create --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --record-set-name $cname --ipv4-address $ipAddress | ConvertFrom-Json
     write-host "Record created !";
   }
 } elseif($actionType -eq "remove") {
   if($exists){
-    #write-host "Removing '$($cname).$domainName' with Alias '$($exists.arecords[0].ipv4Address)' ... " -NoNewline
+    write-host "Removing '$($cname).$domainName' with Alias '$($exists.cnameRecord[0].cname)' ... " -NoNewline
     #$result = az network dns record-set cname delete --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $cname --yes
     write-host "Done"
   } else {

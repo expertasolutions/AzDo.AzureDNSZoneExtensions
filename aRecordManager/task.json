@@ -38,7 +38,7 @@
           "name": "actionType",
           "label": "Action type",
           "type": "pickList",
-          "defaultValue": "Create/Update",
+          "defaultValue": "Create / Update",
           "options": {
             "createUpdate": "Create / Update",
             "remove": "Remove"
