@@ -42,7 +42,10 @@ This task package is compatible with:
 </table>
 
 ## A Record Manager (required parameters)
-![ARecord_Task_inputs](img/ARecord_v2.jpg)
+![ARecord_Task_inputs](img/ARecord_v3.jpg)
+
+## CNAME Record Manager (required parameters)
+![CNAMERecord_Task_inputs](img/cnameRecord_v3.jpg)
 
 # Requirements
 
