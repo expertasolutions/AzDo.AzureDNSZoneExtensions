@@ -17,8 +17,8 @@ try {
     var azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true);
     var resourceGroupName = tl.getInput("resourceGroupName", true);
     var domainName = tl.getInput("domainName", true);
-    var aName = tl.getInput("aName", true);
-    var ipAddress = tl.getInput("ipAddress", true);
+    var cname = tl.getInput("cname", true);
+    var alias = tl.getInput("alias", true);
     var actionType = tl.getInput("actionType", true);
     
     var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false);
@@ -34,20 +34,20 @@ try {
     console.log("ResourceGroupName: " + resourceGroupName);
     console.log("ActionType: " + actionType);
     console.log("DomainName: " + domainName);
-    console.log("A Name: " + aName);
-    console.log("Ip Address: " + ipAddress);
+    console.log("CName: " + cname);
+    console.log("Alias: " + alias);
     
     var pwsh = new shell({
         executionPolicy: 'Bypass',
         noProfile: true
     });
     
-    pwsh.addCommand(__dirname  + "/adminADnsRecord.ps1 -subscriptionId '" + subcriptionId
+    pwsh.addCommand(__dirname  + "/adminCNAMErecord.ps1 -subscriptionId '" + subcriptionId
         + "' -servicePrincipalId '" + servicePrincipalId + "' -servicePrincipalKey '" + servicePrincipalKey
         + "' -tenantId '" + tenantId
         + "' -actionType '" + actionType + "' "
         + "-resourceGroupName '" + resourceGroupName + "' -domainName '" + domainName 
-        + "' -aName '" + aName + "' -ipAddress '" + ipAddress + "'")
+        + "' -cname '" + cname + "' -alias '" + alias + "'")
         .then(function() {
             return pwsh.invoke();
         }).then(function(output){

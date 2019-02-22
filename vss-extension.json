@@ -38,12 +38,9 @@
     "license": { "path": "license" }
   },
   "files": [
-      {
-        "path": "aRecordManager"
-      }, {
-          "path": "img",
-          "addressable": true
-      }
+      { "path": "aRecordManager" }, 
+      { "path": "cnameRecordManager" },
+      { "path": "img", "addressable": true }
   ],
   "contributions": [
       {
@@ -54,6 +51,16 @@
           ],
           "properties": {
               "name": "aRecordManager"
+          }
+      },
+      {
+          "id": "cnameRecord-task",
+          "type": "ms.vss-distributed-task.task",
+          "targets": [
+              "ms.vss-distributed-task.tasks"
+          ],
+          "properties": {
+              "name": "cnameRecordManager"
           }
       }
   ]
