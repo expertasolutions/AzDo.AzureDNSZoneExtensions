@@ -32,12 +32,12 @@ if($actionType -eq "createUpdate") {
     if($exists.cnameRecord[0].cname -eq $alias) {
       write-host "Nothing to change"  
     } else {
-      $result = az network dns record-set cname set-record --cname $cname --record-set-name $alias --zone-name $domainName --resource-group $resourceGroupName --subscription $subscriptionId | ConvertFrom-Json
+      $result = az network dns record-set cname set-record --cname $alias --record-set-name $cname --zone-name $domainName --resource-group $resourceGroupName --subscription $subscriptionId | ConvertFrom-Json
       write-host "Record updated !"
     }
   } else {
     write-host "Creating '$($cname).$domainName' ... " -NoNewline
-    $result = az network dns record-set cname set-record --cname $cname --record-set-name $alias --zone-name $domainName --resource-group $resourceGroupName --subscription $subscriptionId | ConvertFrom-Json
+    $result = az network dns record-set cname set-record --cname $alias --record-set-name $cname --zone-name $domainName --resource-group $resourceGroupName --subscription $subscriptionId | ConvertFrom-Json
     write-host "Record created !";
   }
 } elseif($actionType -eq "remove") {
