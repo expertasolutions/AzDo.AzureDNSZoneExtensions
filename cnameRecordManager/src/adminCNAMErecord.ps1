@@ -32,18 +32,18 @@ if($actionType -eq "createUpdate") {
     if($exists.cnameRecord[0].cname -eq $alias) {
       write-host "Nothing to change"  
     } else {
-      #$result = az network dns record-set cname update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $cname --set "cnameRecord[0].cname=$alias" --force-string | ConvertFrom-Json
+      $result = az network dns record-set cname set-record --cname $cname --record-set-name $alias --zone-name $domainName --resource-group $resourceGroupName --subscription $subscriptionId | ConvertFrom-Json
       write-host "Record updated !"
     }
   } else {
     write-host "Creating '$($cname).$domainName' ... " -NoNewline
-    #$result = az network dns record-set cname create --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --record-set-name $cname --ipv4-address $ipAddress | ConvertFrom-Json
+    $result = az network dns record-set cname set-record --cname $cname --record-set-name $alias --zone-name $domainName --resource-group $resourceGroupName --subscription $subscriptionId | ConvertFrom-Json
     write-host "Record created !";
   }
 } elseif($actionType -eq "remove") {
   if($exists){
     write-host "Removing '$($cname).$domainName' with Alias '$($exists.cnameRecord[0].cname)' ... " -NoNewline
-    #$result = az network dns record-set cname delete --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $cname --yes
+    az network dns record-set cname delete --name $cname --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --yes
     write-host "Done"
   } else {
     write-host "'$($cname).$domainName' not existing..."
