@@ -5,7 +5,7 @@
     "description": "Task to create/update a 'CNAME' Dns Record",
     "helpMarkDown": "",
     "category": "Utility",
-    "preview": true,
+    "preview": false,
     "author": "Solutions Experta Inc.",
     "version": {
         "Major": 0,
@@ -38,7 +38,7 @@
           "name": "actionType",
           "label": "Action type",
           "type": "pickList",
-          "defaultValue": "Create / Update",
+          "defaultValue": "createUpdate",
           "options": {
             "createUpdate": "Create / Update",
             "remove": "Remove"
