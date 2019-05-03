@@ -5,7 +5,7 @@
     "description": "Task to create/update an 'A' Dns Record",
     "helpMarkDown": "",
     "category": "Utility",
-    "preview": false,
+    "preview": true,
     "author": "Solutions Experta Inc.",
     "version": {
         "Major": 0,
@@ -82,6 +82,15 @@
           "helpMarkDown":"",
           "groupName": "dnszonedetail",
           "visibleRule": "actionType = createUpdate"
+        },
+        {
+          "name":"ttl",
+          "type":"string",
+          "label": "TTL (minutes)",
+          "required":true,
+          "groupName":"dnszonedetail",
+          "defaultValue": "60",
+          "visibleRule":"actionTyep = createUpdate"
         }
     ],
     "dataSourceBindings" : [
