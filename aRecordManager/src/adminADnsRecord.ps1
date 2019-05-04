@@ -34,7 +34,8 @@ if($actionType -eq "createUpdate") {
     if($exists.arecords[0].ipv4Address -eq $ipAddress -and $exists.ttl -eq $ttl) {
       write-host "Nothing to change"  
     } else {
-      $result = az network dns record-set a update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --set "arecords[0].ipv4Address=$ipAddress,ttl=$ttl" --force-string | ConvertFrom-Json
+      $result = az network dns record-set a update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --set "arecords[0].ipv4Address=$ipAddress" --force-string | ConvertFrom-Json
+      $result = az network dns record-set a update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --set "ttl=$ttl" --force-string | ConvertFrom-Json
       write-host "Record updated !"
     }
   } else {
