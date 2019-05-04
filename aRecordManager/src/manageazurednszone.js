@@ -18,9 +18,13 @@ try {
     var resourceGroupName = tl.getInput("resourceGroupName", true);
     var domainName = tl.getInput("domainName", true);
     var aName = tl.getInput("aName", true);
-    var ipAddress = tl.getInput("ipAddress", true);
-    var ttl = tl.getInput("ttl", true);
+
     var actionType = tl.getInput("actionType", true);
+
+    var ipRequired = actionType == "createUpdate";
+
+    var ipAddress = tl.getInput("ipAddress", ipRequired);
+    var ttl = tl.getInput("ttl", true);
     
     var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false);
 
