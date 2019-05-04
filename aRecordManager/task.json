@@ -87,9 +87,9 @@
           "name":"ttl",
           "type":"string",
           "label": "TTL (seconds)",
-          "required":true,
+          "required": true,
           "groupName":"dnszonedetail",
-          "defaultValue": "60",
+          "defaultValue": "3600",
           "visibleRule":"actionType = createUpdate"
         }
     ],
