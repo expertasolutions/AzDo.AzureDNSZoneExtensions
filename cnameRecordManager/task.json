@@ -90,7 +90,7 @@
           "required":true,
           "groupName":"dnszonedetail",
           "defaultValue": "60",
-          "visibleRule":"actionTyep = createUpdate"
+          "visibleRule":"actionType = createUpdate"
         }
     ],
     "dataSourceBindings" : [
