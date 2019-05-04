@@ -31,7 +31,7 @@ if($actionType -eq "createUpdate") {
   if($exists){
     write-host "'$($aName).$domainName' -> Current IP: '$($exists.arecords[0].ipv4Address)' vs New IP: '$($ipAddress)' ... " -NoNewline
     
-    if($exists.arecords[0].ipv4Address -eq $ipAddress -or $exists.ttl -eq $ttl) {
+    if($exists.arecords[0].ipv4Address -eq $ipAddress -and $exists.ttl -eq $ttl) {
       write-host "Nothing to change"  
     } else {
       $result = az network dns record-set a update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --set "arecords[0].ipv4Address=$ipAddress,ttl=$ttl" --force-string | ConvertFrom-Json
