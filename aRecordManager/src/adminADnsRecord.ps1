@@ -17,6 +17,8 @@ param (
   [string]$aName
 , [Parameter(Mandatory=$true, Position=9)]
   [string]$ipAddress
+, [Parameter(Mandatory=$true, Position=10)]
+  [string]$ttl
 )
 
 $loginResult = az login --service-principal -u $servicePrincipalId -p $servicePrincipalKey --tenant $tenantId
@@ -29,15 +31,16 @@ if($actionType -eq "createUpdate") {
   if($exists){
     write-host "'$($aName).$domainName' -> Current IP: '$($exists.arecords[0].ipv4Address)' vs New IP: '$($ipAddress)' ... " -NoNewline
     
-    if($exists.arecords[0].ipv4Address -eq $ipAddress) {
+    if($exists.arecords[0].ipv4Address -eq $ipAddress -or $exists.ttl -eq $ttl) {
       write-host "Nothing to change"  
     } else {
-      $result = az network dns record-set a update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --set "arecords[0].ipv4Address=$ipAddress" --force-string | ConvertFrom-Json
+      $result = az network dns record-set a update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --set "arecords[0].ipv4Address=$ipAddress,ttl=$ttl" --force-string | ConvertFrom-Json
       write-host "Record updated !"
     }
   } else {
     write-host "Creating '$($aName).$domainName' ... " -NoNewline
     $result = az network dns record-set a add-record --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --record-set-name $aName --ipv4-address $ipAddress | ConvertFrom-Json
+    $result = az network dns record-set a update --resource-group $resourceGroupName --zone-name $domainName --subscription $subscriptionId --name $aName --set "ttl=$ttl" --force-string | ConvertFrom-Json
     write-host "Record created !";
   }
 } elseif($actionType -eq "remove") {

@@ -86,7 +86,7 @@
         {
           "name":"ttl",
           "type":"string",
-          "label": "TTL (minutes)",
+          "label": "TTL (seconds)",
           "required":true,
           "groupName":"dnszonedetail",
           "defaultValue": "60",
