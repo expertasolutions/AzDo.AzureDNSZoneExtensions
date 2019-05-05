@@ -18,8 +18,13 @@ try {
     var resourceGroupName = tl.getInput("resourceGroupName", true);
     var domainName = tl.getInput("domainName", true);
     var aName = tl.getInput("aName", true);
-    var ipAddress = tl.getInput("ipAddress", true);
+
     var actionType = tl.getInput("actionType", true);
+
+    var ipRequired = actionType == "createUpdate";
+
+    var ipAddress = tl.getInput("ipAddress", ipRequired);
+    var ttl = tl.getInput("ttl", true);
     
     var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false);
 
@@ -36,6 +41,7 @@ try {
     console.log("DomainName: " + domainName);
     console.log("A Name: " + aName);
     console.log("Ip Address: " + ipAddress);
+    console.log("TTL (seconds): " + ttl);
     
     var pwsh = new shell({
         executionPolicy: 'Bypass',
@@ -47,7 +53,7 @@ try {
         + "' -tenantId '" + tenantId
         + "' -actionType '" + actionType + "' "
         + "-resourceGroupName '" + resourceGroupName + "' -domainName '" + domainName 
-        + "' -aName '" + aName + "' -ipAddress '" + ipAddress + "'")
+        + "' -aName '" + aName + "' -ipAddress '" + ipAddress + "' -ttl '" + ttl + "'")
         .then(function() {
             return pwsh.invoke();
         }).then(function(output){
