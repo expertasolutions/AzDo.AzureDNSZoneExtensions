@@ -51,6 +51,7 @@ try {
                 throw new Error('Auth error --> ' + err);
             }
 
+            console.dir(creds, { depth: null, colors: true})
             const client = new DnsManagementClient(creds);
             
             if(actionType === "add"){
