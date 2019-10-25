@@ -13,6 +13,10 @@ var tl = require('azure-pipelines-task-lib');
 const msRestAzure = require('ms-rest-azure');
 const DnsManagementClient = require('azure-arm-dns');
 
+const ARecord = {
+    ipv4Address: ""
+};
+
 try {
     
     var azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true);
@@ -55,10 +59,9 @@ try {
             const client = new DnsManagementClient(creds, subcriptionId);
             
             if(actionType === "createUpdate"){
-                
-                const param = new DnsManagementClient.DnsManagementModels.aRecord();
-                param.ipv4Address = ipAddress;
-                return client.recordSet.createOrUpdate(resourceGroupName, domainName, aName, "A", param)
+                const myRecord = new ARecord();
+                myRecord.ipv4Address = ipAddress;
+                return client.recordSet.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord)
                         .then(result => {
                             console.log('record created');
                             console.log(result);
