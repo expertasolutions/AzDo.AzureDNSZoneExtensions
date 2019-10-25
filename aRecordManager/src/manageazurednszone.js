@@ -43,7 +43,8 @@ try {
     console.log("A Name: " + aName);
     console.log("Ip Address: " + ipAddress);
     console.log("TTL (seconds): " + ttl);
-    
+    console.log("");
+
     msRestAzure.loginWithServicePrincipalSecret(
         servicePrincipalId, servicePrincipalKey, 
         tenantId, (err, creds) => {
@@ -51,10 +52,9 @@ try {
                 throw new Error('Auth error --> ' + err);
             }
 
-            console.dir(creds, { depth: null, colors: true})
             const client = new DnsManagementClient(creds, subcriptionId);
             
-            if(actionType === "add"){
+            if(actionType === "createUpdate"){
                 const param = new aRecord();
                 param.ipv4Address = ipAddress;
                 return client.recordSet.createOrUpdate(resourceGroupName, domainName, aName, "A", param)
