@@ -61,6 +61,8 @@ try {
                         .then(result => {
                             console.log('record created');
                             console.log(result);
+                        }).catch(err=> {
+                            console.log(err);
                         });
             } else if(actionType == "remove") {
                 console.log("not implemented");
