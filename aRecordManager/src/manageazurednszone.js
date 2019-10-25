@@ -61,6 +61,7 @@ try {
             if(actionType === "createUpdate"){
                 const myRecord = Object.create(ARecord);
                 myRecord.ipv4Address = ipAddress;
+
                 return client.recordSet.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord)
                         .then(result => {
                             console.log('record created');
