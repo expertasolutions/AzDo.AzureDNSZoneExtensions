@@ -59,7 +59,7 @@ try {
             const client = new DnsManagementClient(creds, subcriptionId);
             
             if(actionType === "createUpdate"){
-                const myRecord = new ARecord();
+                const myRecord = Object.create(ARecord);
                 myRecord.ipv4Address = ipAddress;
                 return client.recordSet.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord)
                         .then(result => {
@@ -71,7 +71,6 @@ try {
             } else if(actionType == "remove") {
                 console.log("not implemented");
             }
-            
         });
     
 } catch (err) {
