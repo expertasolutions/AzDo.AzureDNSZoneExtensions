@@ -9,8 +9,9 @@
   "author": "Solutions Experta Inc.",
   "license": "MIT",
   "dependencies": {
+    "azure-arm-dns": "^3.2.0",
+    "azure-pipelines-task-lib": "^2.7.0",
     "node-powershell": "^3.3.1",
-    "node-powershellcore": "^1.0.0",
-    "azure-pipelines-task-lib": "^2.7.0"
+    "node-powershellcore": "^1.0.0"
   }
 }

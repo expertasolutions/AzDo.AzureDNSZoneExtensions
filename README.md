@@ -16,7 +16,3 @@ This task package is compatible with:
 
 ## CNAME Record Manager (required parameters)
 ![CNAMERecord_Task_inputs](img/cnameRecord_v4.jpg)
-
-# Requirements
-
-- Azure CLI must be installed on the build agent

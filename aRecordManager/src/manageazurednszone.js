@@ -11,6 +11,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 var tl = require('azure-pipelines-task-lib');
 var shell = require('node-powershell');
+const msRestAzure = require('ms-rest-azure');
+const DnsManagementClient = require('azure-arm-dns');
 
 try {
     
@@ -43,27 +45,28 @@ try {
     console.log("Ip Address: " + ipAddress);
     console.log("TTL (seconds): " + ttl);
     
-    var pwsh = new shell({
-        executionPolicy: 'Bypass',
-        noProfile: true
-    });
-    
-    pwsh.addCommand(__dirname  + "/adminADnsRecord.ps1 -subscriptionId '" + subcriptionId
-        + "' -servicePrincipalId '" + servicePrincipalId + "' -servicePrincipalKey '" + servicePrincipalKey
-        + "' -tenantId '" + tenantId
-        + "' -actionType '" + actionType + "' "
-        + "-resourceGroupName '" + resourceGroupName + "' -domainName '" + domainName 
-        + "' -aName '" + aName + "' -ipAddress '" + ipAddress + "' -ttl '" + ttl + "'")
-        .then(function() {
-            return pwsh.invoke();
-        }).then(function(output){
-            console.log(output);
-            pwsh.dispose();
-        }).catch(function(err){
-            console.log(err);
-            tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
-            pwsh.dispose();
+    msRestAzure.loginWithServicePrincipalSecret(
+        servicePrincipalId, servicePrincipalKey, 
+        tenantId, (err, creds) => {
+            if(err){
+                throw new Error('Auth error --> ' + err);
+            }
+
+            const client = new DnsManagementClient(creds);
+            
+            if(actionType === "add"){
+                const param = { ipv4Address = ipAddress };
+                return client.recordSet.createOrUpdate(resourceGroupName, domainName, aName, "A", param)
+                        .then(result => {
+                            console.log('record created');
+                            console.log(result);
+                        });
+            } elseif(actionType == "remove") {
+                console.log("not implemented");
+            }
+            
         });
+    
 } catch (err) {
     tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
 }
