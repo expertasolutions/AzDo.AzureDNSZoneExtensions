@@ -10,7 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 
 var tl = require('azure-pipelines-task-lib');
-var shell = require('node-powershell');
+const msRestAzure = require('ms-rest-azure');
+const DnsManagementClient = require('azure-arm-dns');
 
 try {
     
@@ -37,27 +38,8 @@ try {
     console.log("CName: " + cname);
     console.log("Alias: " + alias);
     
-    var pwsh = new shell({
-        executionPolicy: 'Bypass',
-        noProfile: true
-    });
     
-    pwsh.addCommand(__dirname  + "/adminCNAMErecord.ps1 -subscriptionId '" + subcriptionId
-        + "' -servicePrincipalId '" + servicePrincipalId + "' -servicePrincipalKey '" + servicePrincipalKey
-        + "' -tenantId '" + tenantId
-        + "' -actionType '" + actionType + "' "
-        + "-resourceGroupName '" + resourceGroupName + "' -domainName '" + domainName 
-        + "' -cname '" + cname + "' -alias '" + alias + "'")
-        .then(function() {
-            return pwsh.invoke();
-        }).then(function(output){
-            console.log(output);
-            pwsh.dispose();
-        }).catch(function(err){
-            console.log(err);
-            tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
-            pwsh.dispose();
-        });
+    
 } catch (err) {
     tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
 }

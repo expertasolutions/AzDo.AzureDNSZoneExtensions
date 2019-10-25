@@ -55,7 +55,8 @@ try {
             const client = new DnsManagementClient(creds, subcriptionId);
             
             if(actionType === "createUpdate"){
-                const param = new aRecord();
+                
+                const param = new DnsManagementClient.DnsManagementModels.aRecord();
                 param.ipv4Address = ipAddress;
                 return client.recordSet.createOrUpdate(resourceGroupName, domainName, aName, "A", param)
                         .then(result => {
