@@ -55,6 +55,8 @@ try {
             const client = new DnsManagementClient(creds);
             
             if(actionType === "add"){
+                const param = new aRecord();
+                param.ipv4Address = ipAddress;
                 return client.recordSet.createOrUpdate(resourceGroupName, domainName, aName, "A", param)
                         .then(result => {
                             console.log('record created');
