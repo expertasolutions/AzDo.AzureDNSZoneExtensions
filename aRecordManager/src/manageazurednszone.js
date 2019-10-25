@@ -52,7 +52,7 @@ try {
             }
 
             console.dir(creds, { depth: null, colors: true})
-            const client = new DnsManagementClient(creds);
+            const client = new DnsManagementClient(creds, subcriptionId);
             
             if(actionType === "add"){
                 const param = new aRecord();
