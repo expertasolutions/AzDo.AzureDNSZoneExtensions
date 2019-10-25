@@ -62,7 +62,7 @@ try {
                             console.log('record created');
                             console.log(result);
                         });
-            } elseif(actionType == "remove") {
+            } else if(actionType == "remove") {
                 console.log("not implemented");
             }
             
