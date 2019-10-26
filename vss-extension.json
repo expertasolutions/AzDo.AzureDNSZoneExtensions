@@ -21,6 +21,9 @@
   "links":{
       "support": { 
           "uri": "https://github.com/expertasolutions/AzureDNSZoneExtensions/issues"
+      },
+      "privacy-policy": {
+          "uri": ""
       }
   },
   "repository": {
@@ -35,7 +38,8 @@
   },
   "content": {
     "details": { "path": "readme.md" },
-    "license": { "path": "license" }
+    "license": { "path": "license" },
+    "privacy": { "path": "privacy" }
   },
   "files": [
       { "path": "aRecordManager" }, 

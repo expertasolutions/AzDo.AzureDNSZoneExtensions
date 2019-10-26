@@ -14,19 +14,15 @@ const msRestAzure = require('ms-rest-azure');
 const DnsManagementClient = require('azure-arm-dns');
 
 try {
-    
     var azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true);
     var resourceGroupName = tl.getInput("resourceGroupName", true);
     var domainName = tl.getInput("domainName", true);
     var aName = tl.getInput("aName", true);
 
     var actionType = tl.getInput("actionType", true);
-
     var ipRequired = actionType == "createUpdate";
-
     var ipAddress = tl.getInput("ipAddress", ipRequired);
     var ttl = parseInt(tl.getInput("ttl", true));
-    
     var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false);
 
     var servicePrincipalId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalid", false);
@@ -51,9 +47,7 @@ try {
             if(err){
                 throw new Error('Auth error --> ' + err);
             }
-
             const client = new DnsManagementClient(creds, subcriptionId);
-            
             if(actionType === "createUpdate"){
                 const myRecord = {
                     tTL: ttl,
@@ -62,11 +56,15 @@ try {
                 return client.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord)
                         .then(result => {
                             console.log('Records ' + aName + ' is set');
+                        }).catch(err=> {
+                            tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
                         });
             } else if(actionType == "remove") {
                 return client.recordSets.deleteMethod(resourceGroupName, domainName, aName)
                         .then(result => {
                             console.log('Record ' + aName + ' has been deleted');
+                        }).catch(err=> {
+                            tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
                         });
 
             }
