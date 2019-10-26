@@ -64,7 +64,7 @@ try {
                         .then(result => {
                             console.log('Records ' + aName + ' is set');
                         }).catch(err=> {
-                            console.log(err);
+                            throw err;
                         });
             } else if(actionType == "remove") {
                 
@@ -72,7 +72,7 @@ try {
                         .then(result => {
                             console.log('Record ' + aName + ' has been deleted');
                         }).catch(err => {
-                            console.log(err);
+                            throw err;
                         });
 
             }
