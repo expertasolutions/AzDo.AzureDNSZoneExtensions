@@ -59,25 +59,18 @@ try {
                     tTL: ttl,
                     aRecords: [{ ipv4Address: ipAddress }]
                  };    
-
                 return client.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord)
                         .then(result => {
                             console.log('Records ' + aName + ' is set');
-                        }).catch(err=> {
-                            throw err;
                         });
             } else if(actionType == "remove") {
-                
                 return client.recordSets.deleteMethod(resourceGroupName, domainName, aName)
                         .then(result => {
                             console.log('Record ' + aName + ' has been deleted');
-                        }).catch(err => {
-                            throw err;
                         });
 
             }
         });
-    
 } catch (err) {
     tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
 }
