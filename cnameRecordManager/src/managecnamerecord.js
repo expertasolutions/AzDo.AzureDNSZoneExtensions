@@ -55,14 +55,14 @@ try {
                 };    
                 return client.recordSets.createOrUpdate(resourceGroupName, domainName, cname, "CNAME", myRecord)
                         .then(result => {
-                            console.log('Records ' + cName + ' is set');
+                            console.log('Records ' + cname + ' is set');
                         }).catch(err=> {
                             tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
                         });
             } else if(actionType == "remove") {
                 return client.recordSets.deleteMethod(resourceGroupName, domainName, cname, "CNAME")
                         .then(result => {
-                            console.log('Record ' + cName + ' has been deleted');
+                            console.log('Record ' + cname + ' has been deleted');
                         }).catch(err=> {
                             tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
                         });
