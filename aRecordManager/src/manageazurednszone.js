@@ -60,7 +60,7 @@ try {
                             tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
                         });
             } else if(actionType == "remove") {
-                return client.recordSets.deleteMethod(resourceGroupName, domainName, aName)
+                return client.recordSets.deleteMethod(resourceGroupName, domainName, aName, "A")
                         .then(result => {
                             console.log('Record ' + aName + ' has been deleted');
                         }).catch(err=> {
