@@ -20,12 +20,12 @@ try {
     var domainName = tl.getInput("domainName", true);
     var aName = tl.getInput("aName", true);
 
-    var actionType = parseInt(tl.getInput("actionType", true));
+    var actionType = tl.getInput("actionType", true);
 
     var ipRequired = actionType == "createUpdate";
 
     var ipAddress = tl.getInput("ipAddress", ipRequired);
-    var ttl = tl.getInput("ttl", true);
+    var ttl = parseInt(tl.getInput("ttl", true));
     
     var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false);
 
@@ -62,8 +62,7 @@ try {
 
                 return client.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord)
                         .then(result => {
-                            console.log('record created');
-                            console.log(result);
+                            console.log('Records ' + aName + ' is set');
                         }).catch(err=> {
                             console.log(err);
                         });
@@ -71,10 +70,8 @@ try {
                 
                 return client.recordSets.deleteMethod(resourceGroupName, domainName, aName)
                         .then(result => {
-                            console.log("deleted");
-                            console.log(result);
+                            console.log('Record ' + aName + ' has been deleted');
                         }).catch(err => {
-                            console.log("in error");
                             console.log(err);
                         });
 
