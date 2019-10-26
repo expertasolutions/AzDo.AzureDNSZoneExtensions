@@ -53,14 +53,14 @@ try {
                     tTL: ttl,
                     cnameRecords: [{ cname: alias }]
                 };    
-                return client.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "CNAME", myRecord)
+                return client.recordSets.createOrUpdate(resourceGroupName, domainName, cname, "CNAME", myRecord)
                         .then(result => {
                             console.log('Records ' + cName + ' is set');
                         }).catch(err=> {
                             tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
                         });
             } else if(actionType == "remove") {
-                return client.recordSets.deleteMethod(resourceGroupName, domainName, aName, "CNAME")
+                return client.recordSets.deleteMethod(resourceGroupName, domainName, cname, "CNAME")
                         .then(result => {
                             console.log('Record ' + cName + ' has been deleted');
                         }).catch(err=> {
