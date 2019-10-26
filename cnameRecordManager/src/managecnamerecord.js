@@ -21,6 +21,7 @@ try {
     var cname = tl.getInput("cname", true);
     var alias = tl.getInput("alias", true);
     var actionType = tl.getInput("actionType", true);
+    var ttl = parseInt(tl.getInput("ttl", true));
     
     var subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false);
 
@@ -37,6 +38,7 @@ try {
     console.log("DomainName: " + domainName);
     console.log("CName: " + cname);
     console.log("Alias: " + alias);
+    console.log("TTL: " + ttl);
     console.log("");
     
     msRestAzure.loginWithServicePrincipalSecret(
