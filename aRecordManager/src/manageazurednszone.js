@@ -20,7 +20,7 @@ try {
     var domainName = tl.getInput("domainName", true);
     var aName = tl.getInput("aName", true);
 
-    var actionType = tl.getInput("actionType", true);
+    var actionType = parseInt(tl.getInput("actionType", true));
 
     var ipRequired = actionType == "createUpdate";
 
@@ -68,7 +68,16 @@ try {
                             console.log(err);
                         });
             } else if(actionType == "remove") {
-                console.log("not implemented");
+                
+                return client.recordSets.deleteMethod(resourceGroupName, domainName, aName)
+                        .then(result => {
+                            console.log("deleted");
+                            console.log(result);
+                        }).catch(err => {
+                            console.log("in error");
+                            console.log(err);
+                        });
+
             }
         });
     
