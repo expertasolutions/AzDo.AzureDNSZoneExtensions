@@ -60,7 +60,7 @@ try {
                     aRecords: [{ ipv4Address: ipAddress }]
                  };    
 
-                return client.recordSet.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord)
+                return client.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord)
                         .then(result => {
                             console.log('record created');
                             console.log(result);
