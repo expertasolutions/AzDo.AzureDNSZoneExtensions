@@ -37,8 +37,36 @@ try {
     console.log("DomainName: " + domainName);
     console.log("CName: " + cname);
     console.log("Alias: " + alias);
+    console.log("");
     
-    
+    msRestAzure.loginWithServicePrincipalSecret(
+        servicePrincipalId, servicePrincipalKey, 
+        tenantId, (err, creds) => {
+            if(err){
+                throw new Error('Auth error --> ' + err);
+            }
+            const client = new DnsManagementClient(creds, subcriptionId);
+            if(actionType === "createUpdate"){
+                const myRecord = {
+                    tTL: ttl,
+                    cnameRecords: [{ cname: alias }]
+                };    
+                return client.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "CNAME", myRecord)
+                        .then(result => {
+                            console.log('Records ' + cName + ' is set');
+                        }).catch(err=> {
+                            tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
+                        });
+            } else if(actionType == "remove") {
+                return client.recordSets.deleteMethod(resourceGroupName, domainName, aName, "CNAME")
+                        .then(result => {
+                            console.log('Record ' + cName + ' has been deleted');
+                        }).catch(err=> {
+                            tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');
+                        });
+
+            }
+        });
     
 } catch (err) {
     tl.setResult(tl.TaskResult.Failed, err.message || 'run() failed');

@@ -52,7 +52,7 @@ try {
                 const myRecord = {
                     tTL: ttl,
                     aRecords: [{ ipv4Address: ipAddress }]
-                 };    
+                };    
                 return client.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord)
                         .then(result => {
                             console.log('Records ' + aName + ' is set');
