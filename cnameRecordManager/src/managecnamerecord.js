@@ -51,7 +51,7 @@ try {
             if(actionType === "createUpdate"){
                 const myRecord = {
                     tTL: ttl,
-                    cnameRecords: [{ cname: alias }]
+                    cnameRecord: [{ cname: alias }]
                 };    
                 return client.recordSets.createOrUpdate(resourceGroupName, domainName, cname, "CNAME", myRecord)
                         .then(result => {
