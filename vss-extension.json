@@ -47,13 +47,13 @@
       { "path": "img", "addressable": true }
   ],
   "badges": [{
-    "href":"https://dev.azure.com/experta/ExpertaSolutions/_build/latest?definitionId=192",
-    "uri":"https://dev.azure.com/experta/ExpertaSolutions/_apis/build/status/AzureDNSZone-CI?branchName=master",
+    "href":"https://dev.azure.com/experta/Community/_build?definitionId=223&_a=summary",
+    "uri":"https://dev.azure.com/experta/Community/_apis/build/status/CD-GitHub-AzureDNSZone?branchName=master",
     "description": "Master build"
   },
   {
-    "href":"https://dev.azure.com/experta/ExpertaSolutions/_release?definitionId=12",
-    "uri":"https://vsrm.dev.azure.com/experta/_apis/public/Release/badge/5b43050d-0a01-4269-ace5-9e22c920391c/12/57",
+    "href":"https://dev.azure.com/experta/Community/_release?definitionId=2&view=mine&_a=releases",
+    "uri":"https://vsrm.dev.azure.com/experta/_apis/public/Release/badge/97814487-b723-4a7d-a446-f599ab91ea2f/2/6",
     "description":"Public marketplace"
   }],
   "contributions": [
