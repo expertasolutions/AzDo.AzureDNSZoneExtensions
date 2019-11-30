@@ -112,7 +112,7 @@
     "outputVariables" : [],
     "execution": {
         "Node": {
-          "target": "src//manageazurednszone.js",
+          "target": "manageazurednszone.js",
           "argumentFormat": ""
         }
       }
