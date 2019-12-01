@@ -5,7 +5,8 @@
   "main": "manageazurednszone.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publishExt": "npm install && tsc -project tsconfig.json"
+    "publishExt": "npm install && tsc -project tsconfig.json",
+    "unitTests": "npx mocha tests/suite.js --reporter xunit --reporter-options output=./unitTests_arecordManager.xml"
   },
   "author": "Solutions Experta Inc.",
   "license": "MIT",
@@ -14,5 +15,10 @@
     "@azure/ms-rest-nodeauth": "^2.0.5",
     "@types/q": "^1.5.2",
     "azure-pipelines-task-lib": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "mocha-junit-reporter": "^1.23.1",
+    "sync-request": "^6.1.0"
   }
 }
