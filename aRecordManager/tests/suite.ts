@@ -26,8 +26,10 @@ describe('Sample task tests', ()=> {
     done();
   }); 
 
+  /*
   it('it should fail if tool returns 1', function(done:MochaDone) {
     // Add code here !!
+    done();
   });
-
+  */
 });

@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "publishExt": "npm install && tsc -project tsconfig.json",
+    "localUnitTests": "npx mocha ./tests/suite.js --reporter xunit --reporter-options output=unitTests_arecordManager.xml",
     "unitTests": "mocha ./tests/suite.js --reporter xunit --reporter-options output=unitTests_arecordManager.xml",
     "buildAndTest": "npm run publishExt && npm run unitTests"
   },
