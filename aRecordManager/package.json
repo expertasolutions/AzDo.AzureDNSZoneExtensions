@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "publishExt": "npm install && tsc -project tsconfig.json",
-    "unitTests": "npx mocha ./tests/suite.js --reporter xunit --reporter-options output=./unitTests_arecordManager.xml",
+    "unitTests": "mocha ./tests/suite.js --reporter xunit --reporter-options output=./unitTests_arecordManager.xml",
     "buildAndTest": "npm run publishExt && npm run unitTests"
   },
   "author": "Solutions Experta Inc.",
@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "@types/mocha": "^5.2.7",
-    "mocha-junit-reporter": "^1.23.1",
     "sync-request": "^6.1.0"
   }
 }
