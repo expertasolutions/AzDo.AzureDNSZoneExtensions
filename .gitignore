@@ -3,4 +3,6 @@ node_modules
 _build
 _packages
 *.yaml
-package-lock.json
+*.js
+*.xml
+*.taskkey

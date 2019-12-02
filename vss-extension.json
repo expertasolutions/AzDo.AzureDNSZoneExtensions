@@ -44,7 +44,7 @@
   "files": [
       { "path": "aRecordManager" }, 
       { "path": "cnameRecordManager" },
-      { "path": "img", "addressable": true }
+      { "path": "_img", "addressable": true }
   ],
   "badges": [{
     "href":"https://dev.azure.com/experta/Community/_build?definitionId=223&_a=summary",
