@@ -4,6 +4,9 @@
 # https://aka.ms/yaml
 
 name: AzureDNSZone-v5.$(date:yy)$(DayOfYear).$(rev:r)-$(Build.SourceBranchName)
+resources:
+ pipelines:
+     - pipeline: testLouis
 trigger:
 - master
 - issue*
