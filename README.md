@@ -3,6 +3,8 @@
 Tasks packages to manage Azure DNS Zone Azure DevOps release pipeline.
 This packages is compatible with all kind of build agents
 
+![Build-MasterBranch](https://dev.azure.com/experta/Community/_apis/build/status/CD-GitHub-AzureDNSZone?branchName=master)
+
 ## Tasks provides
 
 ### A Record Manager (required parameters)
