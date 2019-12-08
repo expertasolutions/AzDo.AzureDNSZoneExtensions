@@ -7,7 +7,8 @@ name: AzureDNSZone-v5.$(date:yy)$(DayOfYear).$(rev:r)-$(Build.SourceBranchName)
 trigger:
 - master
 
-pool: MacNetCorePools
+pool: 
+ name: MacNetCorePools
 
 steps:
 - task: VersionExtractor@4
