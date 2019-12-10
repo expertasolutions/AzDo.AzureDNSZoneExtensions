@@ -11,7 +11,8 @@ trigger:
 pool:
   name: MacNetCorePools
   demands: npm
-
+workspace:
+    clean: all
 steps:
 - task: VersionExtractor@4
   displayName: Version extractor digit
