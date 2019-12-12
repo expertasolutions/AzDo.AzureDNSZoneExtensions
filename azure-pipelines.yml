@@ -8,6 +8,9 @@ trigger:
 - master
 - issue*
 
+pr:
+- master
+
 pool:
   name: MacNetCorePools
   demands: npm
