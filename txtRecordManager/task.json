@@ -75,7 +75,7 @@
         },
         {
           "name": "value",
-          "type": "string",
+          "type": "multiline",
           "label": "Value",
           "defaultValue":"",
           "required": true,
