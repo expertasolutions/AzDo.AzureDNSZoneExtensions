@@ -39,7 +39,7 @@ async function run() {
 
     if(actionType === "CreateUpdate") {
       let txtValues = [{txtValue}];
-      const myRecord = { tTL: ttl, txtRecord: { value: txtValues } };
+      const myRecord = { tTL: ttl, txtRecord: txtValues };
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, txt, "TXT", myRecord);
       console.log('Record ' + txt + ' is set');
     } else if(actionType === "Remove"){
