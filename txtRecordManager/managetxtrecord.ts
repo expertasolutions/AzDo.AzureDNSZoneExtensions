@@ -38,7 +38,7 @@ async function run() {
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
     if(actionType === "CreateUpdate") {
-      let txtValues = [txtValue];
+      let txtValues = [{txtValue}];
       const myRecord = { tTL: ttl, txtRecord: { value: txtValues } };
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, txt, "TXT", myRecord);
       console.log('Record ' + txt + ' is set');
