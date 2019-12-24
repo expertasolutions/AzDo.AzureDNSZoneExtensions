@@ -11,8 +11,8 @@ async function run() {
     let azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true) as string;
     let resourceGroupName = tl.getInput("resourceGroupName", true) as string;
     let domainName = tl.getInput("domainName", true) as string;
-    let txt = tl.getInput("cname", true) as string;
-    let txtValue = tl.getInput("alias", true) as string;
+    let txt = tl.getInput("txt", true) as string;
+    let txtValue = tl.getInput("value", true) as string;
     let actionType = tl.getInput("actionType", true) as string;
     let ttl = parseInt(tl.getInput("ttl", true) as string);
     
