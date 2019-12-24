@@ -3,7 +3,7 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 # CD-GitHub-AzureDNSZone
-name: AzureDNSZone-v5.$(date:yy)$(DayOfYear).$(rev:r)-$(Build.SourceBranchName)
+name: AzureDNSZone-v6.$(date:yy)$(DayOfYear).$(rev:r)-$(Build.SourceBranchName)
 trigger:
 - master
 - issue*
@@ -12,7 +12,7 @@ pr:
 - master
 
 pool:
-  name: MacNetCorePools
+  vmImage: macOS-latest
   demands: npm
 workspace:
     clean: all
@@ -45,6 +45,14 @@ steps:
     command: 'custom'
     workingDir: 'cnameRecordManager'
     customCommand: 'run publishExt'
+
+- task: Npm@1
+  displayName: Build TXTRecordManager
+  inputs:
+    command: 'custom'
+    workingDir: 'txtRecordManager'
+    customCommand: 'run publishExt'
+
 - task: PackageAzureDevOpsExtension@2
   displayName: Package Extension
   inputs:

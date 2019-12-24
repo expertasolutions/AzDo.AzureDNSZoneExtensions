@@ -44,6 +44,7 @@
   "files": [
       { "path": "aRecordManager" }, 
       { "path": "cnameRecordManager" },
+      { "path": "txtRecordManager"},
       { "path": "_img", "addressable": true }
   ],
   "badges": [{
@@ -75,6 +76,16 @@
           ],
           "properties": {
               "name": "cnameRecordManager"
+          }
+      },
+      {
+          "id": "txtRecord-task",
+          "type": "ms.vss-distributed-task.task",
+          "targets": [
+              "ms.vss-distributed-task.tasks"
+          ],
+          "properties": {
+              "name": "txtRecordManager"
           }
       }
   ]

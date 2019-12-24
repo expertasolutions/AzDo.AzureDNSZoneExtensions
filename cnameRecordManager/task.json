@@ -7,12 +7,15 @@
     "category": "Utility",
     "preview": false,
     "author": "Solutions Experta Inc.",
+    "visibility": [
+      "Release"
+    ],
     "version": {
         "Major": 0,
         "Minor": 0,
         "Patch": 0
     },
-    "instanceNameFormat": "Manage CNAME Dns record",
+    "instanceNameFormat": "Manage '$(cname)' CNAME DNS record on $(domainName)",
     "groups": [
         {
           "name": "subazadadmin",
@@ -38,7 +41,7 @@
           "name": "actionType",
           "label": "Action type",
           "type": "pickList",
-          "defaultValue": "createUpdate",
+          "defaultValue": "CreateUpdate",
           "options": {
             "createUpdate": "Create / Update",
             "remove": "Remove"

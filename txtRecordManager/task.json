@@ -1,11 +1,11 @@
 {
-  "id": "8fa28bb0-58e5-4a23-b37c-d709b72fad3f",
-    "name": "ARecordManager",
-    "friendlyName": "A record DNS Manager",
-    "description": "Task to create/update an 'A' Dns Record",
+  "id": "670d728c-00c5-43e9-837d-b600b211b4e0",
+    "name": "TXTRecordManager",
+    "friendlyName": "TXT record DNS Manager",
+    "description": "Task to create/update a 'TXT' Dns Record",
     "helpMarkDown": "",
     "category": "Utility",
-    "preview": false,
+    "preview": true,
     "author": "Solutions Experta Inc.",
     "visibility": [
       "Release"
@@ -15,7 +15,7 @@
         "Minor": 0,
         "Patch": 0
     },
-    "instanceNameFormat": "Manage '$(aName)' A DSN record on $(domainName)",
+    "instanceNameFormat": "Manage '$(txt)' TXT DNS record on $(domainName)",
     "groups": [
         {
           "name": "subazadadmin",
@@ -68,18 +68,18 @@
           "groupName": "dnszonedetail"
         },
         {
-          "name": "aName",
+          "name": "txt",
           "type": "string",
-          "label": "A record",
+          "label": "TXT record",
           "defaultValue": "",
           "required": true,
           "helpMarkDown": "",
           "groupName": "dnszonedetail"
         },
         {
-          "name": "ipAddress",
-          "type":"string",
-          "label": "Ip Address",
+          "name": "value",
+          "type": "multiline",
+          "label": "Values (one value per line)",
           "defaultValue":"",
           "required": true,
           "helpMarkDown":"",
@@ -115,7 +115,7 @@
     "outputVariables" : [],
     "execution": {
         "Node": {
-          "target": "manageazurednszone.js",
+          "target": "managetxtrecord.js",
           "argumentFormat": ""
         }
       }
