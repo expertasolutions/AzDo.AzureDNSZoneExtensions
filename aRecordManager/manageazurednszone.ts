@@ -41,11 +41,11 @@ async function run() {
     const azureCredentials = await LoginToAzure(servicePrincipalId, servicePrincipalKey, tenantId);
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
-    if(actionType.toLowerCase() === "createupdate") {
+    if(actionType === "createUpdate") {
       const myRecord = { tTL: ttl, aRecords: [{ ipv4Address: ipAddress }] };
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord);
       console.log('Record ' + aName + ' is set');
-    } else if(actionType.toLowerCase() === "remove") {
+    } else if(actionType === "remove") {
       await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, aName, "A");
       console.log('Record ' + aName + ' has been deleted');
     } else {
