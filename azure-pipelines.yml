@@ -12,7 +12,7 @@ pr:
 - master
 
 pool:
-  name: MacNetCorePools
+  vmImage: macOS-latest
   demands: npm
 workspace:
     clean: all
