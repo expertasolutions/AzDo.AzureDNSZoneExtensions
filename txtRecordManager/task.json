@@ -12,7 +12,7 @@
         "Minor": 0,
         "Patch": 0
     },
-    "instanceNameFormat": "$(actionType) '$(cname)' TXT DNS record on $(domainName)",
+    "instanceNameFormat": "$(actionType) '$(txt)' TXT DNS record on $(domainName)",
     "groups": [
         {
           "name": "subazadadmin",
