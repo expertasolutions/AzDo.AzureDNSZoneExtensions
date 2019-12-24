@@ -45,6 +45,14 @@ steps:
     command: 'custom'
     workingDir: 'cnameRecordManager'
     customCommand: 'run publishExt'
+
+- task: Npm@1
+  displayName: Build TXTRecordManager
+  inputs:
+    command: 'custom'
+    workingDir: 'txtRecordManager'
+    customCommand: 'run publishExt'
+
 - task: PackageAzureDevOpsExtension@2
   displayName: Package Extension
   inputs:

@@ -11,8 +11,8 @@ async function run() {
     let azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true) as string;
     let resourceGroupName = tl.getInput("resourceGroupName", true) as string;
     let domainName = tl.getInput("domainName", true) as string;
-    let cname = tl.getInput("cname", true) as string;
-    let alias = tl.getInput("alias", true) as string;
+    let txt = tl.getInput("cname", true) as string;
+    let txtValue = tl.getInput("alias", true) as string;
     let actionType = tl.getInput("actionType", true) as string;
     let ttl = parseInt(tl.getInput("ttl", true) as string);
     
@@ -29,21 +29,21 @@ async function run() {
     console.log("ResourceGroupName: " + resourceGroupName);
     console.log("ActionType: " + actionType);
     console.log("DomainName: " + domainName);
-    console.log("CName: " + cname);
-    console.log("Alias: " + alias);
+    console.log("TXT: " + txt);
+    console.log("Value: " + txtValue);
     console.log("TTL: " + ttl);
     console.log("");
 
     const azureCredentials = await LoginToAzure(servicePrincipalId, servicePrincipalKey, tenantId);
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
-    if(actionType.toLocaleLowerCase() === "createupdate") {
-      const myRecord = { tTL: ttl, cnameRecord: { cname: alias } };   
-      await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, cname, "CNAME", myRecord);
-      console.log('Records ' + cname + ' is set');
-    } else if(actionType.toLocaleLowerCase() === "remove"){
-      await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, cname, "CNAME");
-      console.log('Record ' + cname + ' has been deleted');
+    if(actionType === "CreateUpdate") {
+      const myRecord = { tTL: ttl, txtRecord: { txtName: txtValue } };
+      await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, txt, "TXT", myRecord);
+      console.log('Records ' + txt + ' is set');
+    } else if(actionType === "Remove"){
+      await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, txt, "TXT");
+      console.log('Record ' + txt + ' has been deleted');
     } else {
       throw new Error("Action type '" + actionType + "' not supported");
     }

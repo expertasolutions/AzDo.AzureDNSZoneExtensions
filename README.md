@@ -8,7 +8,10 @@ This packages is compatible with all kind of build agents
 ## Tasks provides
 
 ### A Record Manager (required parameters)
-![ARecord_Task_inputs](_img/ARecord_v4.jpg)
+![ARecord_Task_inputs](_img/ARecord_v6.jpg)
 
 ### CNAME Record Manager (required parameters)
-![CNAMERecord_Task_inputs](_img/cnameRecord_v4.jpg)
+![CNAMERecord_Task_inputs](_img/cnameRecord_v6.jpg)
+
+### TXT Record Manager (required parameters)
+![CNAMERecord_Task_inputs](_img/txtRecord_v6.jpg)
