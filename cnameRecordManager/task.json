@@ -81,7 +81,7 @@
           "required": true,
           "helpMarkDown":"",
           "groupName": "dnszonedetail",
-          "visibleRule": "actionType = createUpdate"
+          "visibleRule": "actionType = Create/Update"
         },
         {
           "name":"ttl",
@@ -90,7 +90,7 @@
           "required": true,
           "groupName":"dnszonedetail",
           "defaultValue": "3600",
-          "visibleRule":"actionType = createUpdate"
+          "visibleRule":"actionType = Create/Update"
         }
     ],
     "dataSourceBindings" : [
