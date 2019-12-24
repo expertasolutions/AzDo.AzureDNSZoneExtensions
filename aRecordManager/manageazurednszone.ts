@@ -44,7 +44,7 @@ async function run() {
     if(actionType.toLowerCase() === "createupdate") {
       const myRecord = { tTL: ttl,  aRecords: [{ ipv4Address: ipAddress }] };
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord);
-      console.log('Records ' + aName + ' is set');
+      console.log('Record ' + aName + ' is set');
     } else if(actionType.toLowerCase() === "remove") {
       await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, aName, "A");
       console.log('Record ' + aName + ' has been deleted');

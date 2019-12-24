@@ -75,7 +75,7 @@
         },
         {
           "name": "value",
-          "type":"string",
+          "type": "string",
           "label": "Value",
           "defaultValue":"",
           "required": true,

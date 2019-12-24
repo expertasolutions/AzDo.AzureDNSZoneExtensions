@@ -38,9 +38,10 @@ async function run() {
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
     if(actionType === "CreateUpdate") {
-      const myRecord = { tTL: ttl, txtRecord: { value: [{txtValue}] } };
+      let txtValues = [txtValue];
+      const myRecord = { tTL: ttl, txtRecord: { value: txtValues } };
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, txt, "TXT", myRecord);
-      console.log('Records ' + txt + ' is set');
+      console.log('Record ' + txt + ' is set');
     } else if(actionType === "Remove"){
       await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, txt, "TXT");
       console.log('Record ' + txt + ' has been deleted');

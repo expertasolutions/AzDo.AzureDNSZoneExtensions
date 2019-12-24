@@ -40,7 +40,7 @@ async function run() {
     if(actionType.toLocaleLowerCase() === "createupdate") {
       const myRecord = { tTL: ttl, cnameRecord: { cname: alias } };   
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, cname, "CNAME", myRecord);
-      console.log('Records ' + cname + ' is set');
+      console.log('Record ' + cname + ' is set');
     } else if(actionType.toLocaleLowerCase() === "remove"){
       await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, cname, "CNAME");
       console.log('Record ' + cname + ' has been deleted');
