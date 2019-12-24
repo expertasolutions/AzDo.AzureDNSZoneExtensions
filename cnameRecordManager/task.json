@@ -38,9 +38,9 @@
           "name": "actionType",
           "label": "Action type",
           "type": "pickList",
-          "defaultValue": "Create/Update",
+          "defaultValue": "CreateUpdate",
           "options": {
-            "Create/Update": "Create / Update",
+            "CreateUpdate": "Create / Update",
             "Remove": "Remove"
           },
           "required": false,
@@ -81,7 +81,7 @@
           "required": true,
           "helpMarkDown":"",
           "groupName": "dnszonedetail",
-          "visibleRule": "actionType = Create/Update"
+          "visibleRule": "actionType = CreateUpdate"
         },
         {
           "name":"ttl",
@@ -90,7 +90,7 @@
           "required": true,
           "groupName":"dnszonedetail",
           "defaultValue": "3600",
-          "visibleRule":"actionType = Create/Update"
+          "visibleRule":"actionType = CreateUpdate"
         }
     ],
     "dataSourceBindings" : [

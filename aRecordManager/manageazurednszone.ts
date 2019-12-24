@@ -41,7 +41,7 @@ async function run() {
     const azureCredentials = await LoginToAzure(servicePrincipalId, servicePrincipalKey, tenantId);
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
-    if(actionType === "Create/Update") {
+    if(actionType === "CreateUpdate") {
       const myRecord = { tTL: ttl,  aRecords: [{ ipv4Address: ipAddress }] };
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord);
       console.log('Records ' + aName + ' is set');
