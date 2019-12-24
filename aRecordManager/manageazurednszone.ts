@@ -41,13 +41,15 @@ async function run() {
     const azureCredentials = await LoginToAzure(servicePrincipalId, servicePrincipalKey, tenantId);
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
-    if(actionType === "createUpdate") {
+    if(actionType === "Create/Update") {
       const myRecord = { tTL: ttl,  aRecords: [{ ipv4Address: ipAddress }] };
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord);
       console.log('Records ' + aName + ' is set');
-    } else if(actionType === "remove"){
+    } else if(actionType === "Remove"){
       await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, aName, "A");
       console.log('Record ' + aName + ' has been deleted');
+    } else {
+      throw new Error("Action type '" + actionType + "' not supported");
     }
 
   } catch (err) {
