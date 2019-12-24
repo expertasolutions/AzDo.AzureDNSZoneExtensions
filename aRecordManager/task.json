@@ -12,7 +12,7 @@
         "Minor": 0,
         "Patch": 0
     },
-    "instanceNameFormat": "$(actionType) $(aName) A on $(domainName)",
+    "instanceNameFormat": "$(actionType) '$(aName)' A DSN record on $(domainName)",
     "groups": [
         {
           "name": "subazadadmin",
