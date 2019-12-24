@@ -12,7 +12,7 @@
         "Minor": 0,
         "Patch": 0
     },
-    "instanceNameFormat": "Manage CNAME Dns record",
+    "instanceNameFormat": "$(actionType) $(cname) CNAME on $(domainName)",
     "groups": [
         {
           "name": "subazadadmin",

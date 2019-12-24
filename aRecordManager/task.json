@@ -12,7 +12,7 @@
         "Minor": 0,
         "Patch": 0
     },
-    "instanceNameFormat": "Manage A Dns record",
+    "instanceNameFormat": "$(actionType) $(aName) A on $(domainName)",
     "groups": [
         {
           "name": "subazadadmin",
