@@ -76,7 +76,7 @@
         {
           "name": "value",
           "type": "multiline",
-          "label": "Value",
+          "label": "Values",
           "defaultValue":"",
           "required": true,
           "helpMarkDown":"",
