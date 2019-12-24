@@ -38,10 +38,15 @@ async function run() {
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
     if(actionType === "CreateUpdate") {
-      var txtValues = txtValue.split('\n');
-      console.log("txtValues: " + txtValues.length);
+      let txtValues = txtValue.split('\n');
+      var txtRec = [];
 
-      const myRecord = { tTL: ttl, txtRecords: [{ value: txtValues }] };
+      for(let i=0;i<txtValues.length;i++){
+        txtRec.push({ value: [txtValues[i]] });
+      }
+
+      const myRecord = { tTL: ttl, txtRecords: txtRec };
+
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, txt, "TXT", myRecord);
       console.log('Record ' + txt + ' is set');
     } else if(actionType === "Remove"){
