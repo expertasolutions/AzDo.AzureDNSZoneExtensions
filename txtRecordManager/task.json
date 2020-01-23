@@ -5,7 +5,7 @@
     "description": "Task to create/update a 'TXT' Dns Record",
     "helpMarkDown": "",
     "category": "Utility",
-    "preview": true,
+    "preview": false,
     "author": "Solutions Experta Inc.",
     "visibility": [
       "Release"
