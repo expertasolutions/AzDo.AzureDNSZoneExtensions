@@ -12,9 +12,11 @@ async function run() {
     let resourceGroupName = tl.getInput("resourceGroupName", true) as string;
     let domainName = tl.getInput("domainName", true) as string;
     let cname = tl.getInput("cname", true) as string;
-    let alias = tl.getInput("alias", true) as string;
     let actionType = tl.getInput("actionType", true) as string;
-    let ttl = parseInt(tl.getInput("ttl", true) as string);
+    let inCreationMode = actionType === "createUpdate";
+
+    let alias = tl.getInput("alias", inCreationMode) as string;
+    let ttl = parseInt(tl.getInput("ttl", inCreationMode) as string);
     
     let subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false) as string;
 
@@ -30,8 +32,12 @@ async function run() {
     console.log("ActionType: " + actionType);
     console.log("DomainName: " + domainName);
     console.log("CName: " + cname);
-    console.log("Alias: " + alias);
-    console.log("TTL: " + ttl);
+
+    if(inCreationMode === true) {
+      console.log("Alias: " + alias);
+      console.log("TTL: " + ttl);
+    }
+
     console.log("");
 
     const azureCredentials = await LoginToAzure(servicePrincipalId, servicePrincipalKey, tenantId);

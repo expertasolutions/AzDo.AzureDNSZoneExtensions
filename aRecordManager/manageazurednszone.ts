@@ -8,8 +8,6 @@ async function LoginToAzure(servicePrincipalId:string, servicePrincipalKey:strin
 
 async function run() {
   try {
-
-    console.log("inside the scripts")
     
     let azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true) as string;
     let resourceGroupName = tl.getInput("resourceGroupName", true) as string;
@@ -17,9 +15,11 @@ async function run() {
     let aName = tl.getInput("aName", true) as string;
 
     let actionType = tl.getInput("actionType", true) as string;
-    let ipRequired = (actionType == "createUpdate");
-    let ipAddress = tl.getInput("ipAddress", ipRequired) as string;
-    let ttl = parseInt(tl.getInput("ttl", true) as string);
+    let inCreationMode = actionType === "createUpdate";
+    
+    let ipAddress = tl.getInput("ipAddress", inCreationMode) as string;
+    let ttl = parseInt(tl.getInput("ttl", inCreationMode) as string);
+
     let subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false) as string;
 
     let servicePrincipalId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalid", false) as string;
@@ -34,8 +34,12 @@ async function run() {
     console.log("ActionType: " + actionType);
     console.log("DomainName: " + domainName);
     console.log("A Name: " + aName);
-    console.log("Ip Address: " + ipAddress);
-    console.log("TTL (seconds): " + ttl);
+
+    if(inCreationMode === true) {
+      console.log("Ip Address: " + ipAddress);
+      console.log("TTL (seconds): " + ttl);
+    }
+
     console.log("");
 
     const azureCredentials = await LoginToAzure(servicePrincipalId, servicePrincipalKey, tenantId);
