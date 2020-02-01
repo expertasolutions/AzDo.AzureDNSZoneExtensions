@@ -8,8 +8,6 @@ async function LoginToAzure(servicePrincipalId:string, servicePrincipalKey:strin
 
 async function run() {
   try {
-
-    console.log("inside the scripts")
     
     let azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true) as string;
     let resourceGroupName = tl.getInput("resourceGroupName", true) as string;
