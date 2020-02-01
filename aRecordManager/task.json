@@ -80,7 +80,7 @@
           "name": "ipAddress",
           "type":"string",
           "label": "Ip Address",
-          "defaultValue":"",
+          "defaultValue":"1.0.0.1",
           "required": true,
           "helpMarkDown":"",
           "groupName": "dnszonedetail",

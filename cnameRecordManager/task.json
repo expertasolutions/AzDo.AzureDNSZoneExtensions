@@ -80,7 +80,7 @@
           "name": "alias",
           "type":"string",
           "label": "Alias",
-          "defaultValue":"",
+          "defaultValue":"mydnsalias",
           "required": true,
           "helpMarkDown":"",
           "groupName": "dnszonedetail",
