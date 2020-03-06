@@ -56,7 +56,9 @@
           "defaultValue": "",
           "required": true,
           "helpMarkDown": "",
-          "editable": "true",
+          "properties": {
+            "EditableOptions":true
+          },
           "groupName": "dnszonedetail"
         },
         {
