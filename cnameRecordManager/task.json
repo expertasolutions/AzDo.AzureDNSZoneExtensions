@@ -23,9 +23,9 @@
           "isExpanded": true
         },
         {
-            "name": "dnszonedetail",
-            "displayName": "Azure Dns zone details",
-            "isExpanded": true
+          "name": "dnszonedetail",
+          "displayName": "Azure Dns zone details",
+          "isExpanded": true
         }
     ],
     "inputs": [
@@ -56,6 +56,9 @@
           "defaultValue": "",
           "required": true,
           "helpMarkDown": "",
+          "properties": {
+            "EditableOptions":true
+          },
           "groupName": "dnszonedetail"
         },
         {
@@ -65,6 +68,9 @@
           "defaultValue": "",
           "required": true,
           "helpMarkDown": "",
+          "properties": {
+            "EditableOptions":true
+          },
           "groupName": "dnszonedetail"
         },
         {
