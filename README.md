@@ -2,8 +2,8 @@
 
 ![Build-MasterBranch](https://dev.azure.com/experta/Community/_apis/build/status/expertasolutions.AzureDNSZoneExtensions?branchName=master)
 
-Tasks packages to manage Azure DNS Zone Azure DevOps release pipeline.
-This packages is compatible with all kind of build agents
+Tasks packages to manage Azure DNS Zone from Azure DevOps release pipeline.
+Fully compatible with all kind of Azure DevOps build agents.
 See ***[Release notes](https://github.com/expertasolutions/AzureDNSZoneExtensions/releases)***
 
 ## Available tasks
