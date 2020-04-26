@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-# CD-GitHub-AzureDNSZone
 name: AzureDNSZone-v6.$(date:yy)$(DayOfYear).$(rev:r)-$(Build.SourceBranchName)
 trigger:
 - master
@@ -16,22 +11,26 @@ pool:
   demands: npm
 workspace:
     clean: all
+
 steps:
 - task: VersionExtractor@4
   displayName: Version extractor digit
   name: buildExtractor
   inputs:
     stringToAnalyze: '$(build.buildNumber)'
+
 - task: TfxInstaller@2
   displayName: "Use Node CLI for Azure DevOps (tfx-cli): v0.6.x"
   inputs:
     version: 'v0.6.x'
+
 - task: Npm@1
   displayName: TypeScript Install
   inputs:
     command: 'custom'
     workingDir: 'aRecordManager'
     customCommand: 'install -g typescript'
+
 - task: Npm@1
   displayName: Build ARecordManager
   inputs:
@@ -64,7 +63,9 @@ steps:
   displayName: Copy *.vsix
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '*.vsix'
+    Contents: |
+      *.vsix
+      CurrentReleaseNotes.md
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
