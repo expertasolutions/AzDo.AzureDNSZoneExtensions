@@ -49,7 +49,7 @@ async function run() {
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
     if(actionType === "createUpdate") {
-      metadataList = "{" + metadataList.replace(';', ',') + "}";
+      metadataList = "{" + metadataList.replace(';', ',').replace("=", ":") + "}";
       let metaData = JSON.parse(metadataList);
 
       const myRecord = { tTL: ttl, aRecords: [{ ipv4Address: ipAddress }], metadata: metaData };
