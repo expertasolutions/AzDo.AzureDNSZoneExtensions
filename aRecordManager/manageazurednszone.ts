@@ -26,7 +26,7 @@ async function run() {
     let servicePrincipalKey = tl.getEndpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalkey", false) as string;
     let tenantId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription,"tenantid", false) as string;
 
-    let metadataList = tl.getDelimitedInput("metadataList", ";", false);
+    let metadataList = tl.getInput("metadataList", false) as string;
 
     console.log("SubscriptionId: " + subcriptionId);
     console.log("ServicePrincipalId: " + servicePrincipalId);
@@ -36,7 +36,7 @@ async function run() {
     console.log("ActionType: " + actionType);
     console.log("DomainName: " + domainName);
     console.log("A Name: " + aName);
-    console.log("Metadata: " + metadataList.join(";"));
+    console.log("Metadata: " + metadataList);
 
     if(inCreationMode === true) {
       console.log("Ip Address: " + ipAddress);
@@ -49,10 +49,8 @@ async function run() {
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
     if(actionType === "createUpdate") {
-      let metaData = {
-        "env": "dev",
-        "project": "experta" 
-      };
+      metadataList = "{" + metadataList.replace(';', ',') + "}";
+      let metaData = JSON.parse(metadataList);
 
       const myRecord = { tTL: ttl, aRecords: [{ ipv4Address: ipAddress }], metadata: metaData };
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord);
