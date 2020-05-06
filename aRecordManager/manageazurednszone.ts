@@ -49,10 +49,25 @@ async function run() {
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
     if(actionType === "createUpdate") {
-      metadataList = "{" + metadataList.replace(';', ',').replace("=", ":") + "}";
-      let metaData = JSON.parse(metadataList);
+      
+      let elms = metadataList.split(';');
+      let mdString = undefined;
+      for(let i=0;i<elms.length;i++) {
+        let keyValue = elms[i].split('=');
+        if(mdString === undefined) {
+          mdString = "\"" + keyValue[0] + "\":\"" + keyValue[1] + "\"";
+        } else {
+          mdString += ",\"" + keyValue[0] + "\":\"" + keyValue[1] + "\"";
+        }
+      }
 
-      const myRecord = { tTL: ttl, aRecords: [{ ipv4Address: ipAddress }], metadata: metaData };
+      let metadata = undefined;
+      if(mdString !== undefined) {
+        console.log("Metadata Object: " + mdString);
+        metadata = JSON.parse("{" + mdString + "}");
+      }
+
+      const myRecord = { tTL: ttl, aRecords: [{ ipv4Address: ipAddress }], metadata: metadata };
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord);
       console.log('Record ' + aName + ' is set');
     } else if(actionType === "remove") {
