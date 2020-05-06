@@ -104,8 +104,8 @@
         {
           "name": "metadataList",
           "type": "multiline",
-          "label": "Metadata ([key=value] per line)",
-          "helpMarkDown": "one [key=value] per line(s)",
+          "label": "Metadata ([key=value] separated by ';')",
+          "helpMarkDown": "example: env=dev;project=demo",
           "required": false,
           "groupName": "dnszonedetail",
           "visibleRule": "actionType = createUpdate"

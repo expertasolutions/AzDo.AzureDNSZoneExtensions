@@ -26,6 +26,8 @@ async function run() {
     let servicePrincipalKey = tl.getEndpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalkey", false) as string;
     let tenantId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription,"tenantid", false) as string;
 
+    let metadataList = tl.getDelimitedInput("metadataList", ";", false);
+
     console.log("SubscriptionId: " + subcriptionId);
     console.log("ServicePrincipalId: " + servicePrincipalId);
     console.log("ServicePrincipalKey: " + servicePrincipalKey);
@@ -34,6 +36,7 @@ async function run() {
     console.log("ActionType: " + actionType);
     console.log("DomainName: " + domainName);
     console.log("A Name: " + aName);
+    console.log("Metadata: " + metadataList.join(";"));
 
     if(inCreationMode === true) {
       console.log("Ip Address: " + ipAddress);
