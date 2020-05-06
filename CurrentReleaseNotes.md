@@ -1,7 +1,7 @@
 ## Related Issues
 
-- ### [Issue0063](https://github.com/expertasolutions/AzureDNSZoneExtensions/issues/63)
+- ### [Issue0062](https://github.com/expertasolutions/AzureDNSZoneExtensions/issues/62)
 
-  - Add the Release notes support for GitHub release to the VisualStudio Marketplace page
+  - Add Metadata definition capabality on 'A','CNAME' and 'TXT' tasks
 
-    ![Issue0063-01](_ReleaseNotes/Issue0063/Issue0063-01.png)
+    ![Issue0062-01](_ReleaseNotes/Issue0062/Issue0062-01.png)
