@@ -105,6 +105,7 @@
           "name": "metadataList",
           "type": "multiline",
           "label": "Metadata ([key=value] per line)",
+          "helpMarkDown": "one [key=value] per line(s)",
           "required": false,
           "groupName": "dnszonedetail",
           "visibleRule": "actionType = createUpdate"
