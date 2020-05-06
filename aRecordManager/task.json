@@ -103,7 +103,7 @@
         },
         {
           "name": "metadataList",
-          "type": "multiline",
+          "type": "string",
           "label": "Metadata ([key=value] separated by ';')",
           "helpMarkDown": "example: env=dev;project=demo",
           "required": false,
