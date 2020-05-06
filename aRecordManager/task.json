@@ -100,6 +100,14 @@
           "groupName":"dnszonedetail",
           "defaultValue": "3600",
           "visibleRule":"actionType = createUpdate"
+        },
+        {
+          "name": "metadataList",
+          "type": "multiline",
+          "label": "Metadata ([key=value] per line)",
+          "required": false,
+          "groupName": "dnszonedetail",
+          "visibleRule": "actionType = createUpdate"
         }
     ],
     "dataSourceBindings" : [
