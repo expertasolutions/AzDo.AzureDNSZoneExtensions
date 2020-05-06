@@ -46,7 +46,12 @@ async function run() {
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
     if(actionType === "createUpdate") {
-      const myRecord = { tTL: ttl, aRecords: [{ ipv4Address: ipAddress }] };
+      let metaData = {
+        "env": "dev",
+        "project": "experta" 
+      };
+
+      const myRecord = { tTL: ttl, aRecords: [{ ipv4Address: ipAddress }], metadata: metaData };
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, aName, "A", myRecord);
       console.log('Record ' + aName + ' is set');
     } else if(actionType === "remove") {
