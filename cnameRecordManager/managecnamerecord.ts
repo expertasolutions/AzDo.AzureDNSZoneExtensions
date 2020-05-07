@@ -24,6 +24,8 @@ async function run() {
     let servicePrincipalKey = tl.getEndpointAuthorizationParameter(azureEndpointSubscription, "serviceprincipalkey", false) as string;
     let tenantId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription,"tenantid", false) as string;
 
+    let metadataList = tl.getInput("metadataList", false) as string;
+
     console.log("SubscriptionId: " + subcriptionId);
     console.log("ServicePrincipalId: " + servicePrincipalId);
     console.log("ServicePrincipalKey: " + servicePrincipalKey);
@@ -32,6 +34,7 @@ async function run() {
     console.log("ActionType: " + actionType);
     console.log("DomainName: " + domainName);
     console.log("CName: " + cname);
+    console.log("Metadata: " + metadataList);
 
     if(inCreationMode === true) {
       console.log("Alias: " + alias);
@@ -44,7 +47,24 @@ async function run() {
     const dnsClient = new dns.DnsManagementClient(azureCredentials, subcriptionId);
 
     if(actionType === "createUpdate") {
-      const myRecord = { tTL: ttl, cnameRecord: { cname: alias } };   
+      let elms = metadataList.split(';');
+      let mdString = undefined;
+      for(let i=0;i<elms.length;i++) {
+        let keyValue = elms[i].split('=');
+        if(mdString === undefined) {
+          mdString = "\"" + keyValue[0] + "\":\"" + keyValue[1] + "\"";
+        } else {
+          mdString += ",\"" + keyValue[0] + "\":\"" + keyValue[1] + "\"";
+        }
+      }
+
+      let metadata = undefined;
+      if(mdString !== undefined) {
+        console.log("Metadata Object: " + mdString);
+        metadata = JSON.parse("{" + mdString + "}");
+      }
+
+      const myRecord = { tTL: ttl, cnameRecord: { cname: alias }, metadata: metadata };   
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, cname, "CNAME", myRecord);
       console.log('Record ' + cname + ' is set');
     } else if(actionType === "remove"){
