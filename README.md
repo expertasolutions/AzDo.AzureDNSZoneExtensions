@@ -15,4 +15,4 @@ See ***[Release notes](https://github.com/expertasolutions/AzureDNSZoneExtension
   ![CNAMERecord_Task_inputs](_img/cnameRecord_v6.png)
 
 - ### TXT Record Manager
-  ![CNAMERecord_Task_inputs](_img/txtRecord_v6_preview.png)
+  ![CNAMERecord_Task_inputs](_img/txtRecord_v6.png)
