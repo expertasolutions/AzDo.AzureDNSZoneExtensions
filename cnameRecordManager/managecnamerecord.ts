@@ -25,7 +25,10 @@ async function run() {
     let tenantId = tl.getEndpointAuthorizationParameter(azureEndpointSubscription,"tenantid", false) as string;
 
     let metadataList = tl.getInput("metadataList", false) as string;
-
+    if(metadataList === undefined) {
+      metadataList = "";
+    }
+    
     console.log("SubscriptionId: " + subcriptionId);
     console.log("ServicePrincipalId: " + servicePrincipalId);
     console.log("ServicePrincipalKey: " + servicePrincipalKey);
