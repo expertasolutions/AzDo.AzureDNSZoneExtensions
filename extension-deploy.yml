@@ -49,6 +49,7 @@ steps:
       shareWith: ${{ parameters.shareWith }}
   - task: GitHubRelease@1
     displayName: ${{ parameters.releaseNoteDisplayName }}
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
     inputs:
       gitHubConnection: ExpertaSolutionsGitHub
       action: ${{ parameters.releaseNoteAction }}
