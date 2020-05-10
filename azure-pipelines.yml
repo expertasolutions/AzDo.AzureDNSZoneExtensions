@@ -132,7 +132,7 @@ stages:
       runOnce:
         deploy:
           steps:
-            - task: ARecordManager@6
+            - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
               displayName: 'Add A Dns record'
               inputs:
                 azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
@@ -140,7 +140,7 @@ stages:
                 domainName: experta.ca
                 aName: linuxtest
                 ipAddress: 127.0.0.0
-            - task: ARecordManager@6
+            - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
               displayName: 'Update A Dns record'
               inputs:
                 azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
@@ -148,7 +148,7 @@ stages:
                 domainName: experta.ca
                 aName: linuxtest
                 ipAddress: 127.0.0.1
-            - task: ARecordManager@6
+            - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
               displayName: 'Remove A Dns record'
               inputs:
                 azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
