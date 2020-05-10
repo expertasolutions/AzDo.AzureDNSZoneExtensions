@@ -123,6 +123,9 @@ stages:
               releaseNotesFilePath: '$(PipelineWorkspace)/drop/CurrentReleaseNotes.md'
               isDraft: true
               addChangeLog: false
+          - task: Delay@1
+            inputs:
+              delayForMinutes: '2'
 
   - deployment: LinuxAgentValidation
     dependsOn: DeployExtension
