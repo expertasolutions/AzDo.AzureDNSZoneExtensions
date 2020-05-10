@@ -123,16 +123,12 @@ stages:
               releaseNotesFilePath: '$(PipelineWorkspace)/drop/CurrentReleaseNotes.md'
               isDraft: true
               addChangeLog: false
-  - deployment:
-    pool: RunOnServer
-    environment: ExpertaPrivatePreview
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-            - task: Delay@1
-              inputs:
-                delayForMinutes: '2'
+  - job: RunOnServer
+    pool: Server
+    steps:
+    - task: Delay@1
+      inputs:
+        delayForMinutes: '2'
 
   - deployment: LinuxAgentValidation
     dependsOn: DeployExtension
