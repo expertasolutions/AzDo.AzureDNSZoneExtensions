@@ -8,6 +8,7 @@ pr:
 
 variables:
   - group: CorpVault
+  - group: SubscriptionInfo
 
 stages:
 - stage: Build
