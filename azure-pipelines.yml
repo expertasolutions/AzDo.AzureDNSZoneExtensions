@@ -94,7 +94,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - template: extension-deploy.yml
+          - template: _pipelineTemplates/extension-deploy.yml
             parameters:
               publisherId: ExpertaPreview
               extensionId: pvAzDNSZone
@@ -121,7 +121,7 @@ stages:
       vmImage: 'ubuntu-latest'
       demands: npm
     steps:
-      - template: integration-testing.yml
+      - template: _pipelineTemplates/integration-testing.yml
         parameters:
           platformName: linux
           azureSubscriptionName: '$(domainNameResourceGroup)'
@@ -136,7 +136,7 @@ stages:
       vmImage: windows-latest
       demands: npm
     steps:
-      - template: integration-testing.yml
+      - template: _pipelineTemplates/integration-testing.yml
         parameters:
           platformName: windows
           azureSubscriptionName: $(domainNameResourceGroup)
@@ -151,7 +151,7 @@ stages:
       vmImage: macOS-latest
       demands: npm
     steps:
-      - template: integration-testing.yml
+      - template: _pipelineTemplates/integration-testing.yml
         parameters:
           platformName: macos
           azureSubscriptionName: $(domainNameResourceGroup)
@@ -171,7 +171,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - template: extension-deploy.yml
+          - template: _pipelineTemplates/extension-deploy.yml
             parameters:
               publisherId: ExpertaPreview
               extensionId: privateAzDNSZone
@@ -197,7 +197,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - template: extension-deploy.yml
+          - template: _pipelineTemplates/extension-deploy.yml
             parameters:
               publisherId: experta
               extensionId: azurednszonemanager
