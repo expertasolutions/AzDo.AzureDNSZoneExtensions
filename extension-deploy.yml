@@ -25,35 +25,36 @@ parameters:
   type: boolean
   default: false
 
-- task: VersionExtractor@5
-  name: build
-  displayName: 'Version extractor digit'
-  inputs:
-    stringToAnalyze: '$(build.buildnumber)'
-- task: TfxInstaller@2
-  displayName: 'Use Node CLI for Azure DevOps (tfx-cli): v0.6.x'
-- task: PublishAzureDevOpsExtension@2
-  displayName: 'Publish Extension'
-  inputs:
-    connectedServiceName: 'ExpertaSolutions Marketplace (Community)'
-    fileType: vsix
-    vsixFile: '$(Pipeline.Workspace)/drop/ExpertaPreview.AzureDnsZoneManager-*.vsix'
-    publisherId: ${{ parameters.publisherId }}
-    extensionId: ${{ parameters.extensionId }}
-    extensionName: ${{ parameters.extensionName }}
-    updateTasksVersion: false
-    updateTasksId: ${{ parameters.updateTasksId }}
-    extensionVisibility: ${{ parameters.extensionVisibility }}
-    extensionPricing: free
-    shareWith: ${{ parameters.shareWith }}
-- task: GitHubRelease@1
-  displayName: ${{ parameters.releaseNoteDisplayName }}
-  inputs:
-    gitHubConnection: ExpertaSolutionsGitHub
-    action: ${{ parameters.releaseNoteAction }}
-    tag: ${{ parameters.releaseNoteVersion }}
-    title: ${{ parameters.releaseNoteVersion }}
-    releaseNotesFilePath: '$(Pipeline.Workspace)/drop/CurrentReleaseNotes.md'
-    isDraft: ${{ parameters.releaseNoteIsDraft }}
-    isPreRelease: ${{ parameters.releaseNoteIsPreRelease }}
-    addChangeLog: false
+steps:
+  - task: VersionExtractor@5
+    name: build
+    displayName: 'Version extractor digit'
+    inputs:
+      stringToAnalyze: '$(build.buildnumber)'
+  - task: TfxInstaller@2
+    displayName: 'Use Node CLI for Azure DevOps (tfx-cli): v0.6.x'
+  - task: PublishAzureDevOpsExtension@2
+    displayName: 'Publish Extension'
+    inputs:
+      connectedServiceName: 'ExpertaSolutions Marketplace (Community)'
+      fileType: vsix
+      vsixFile: '$(Pipeline.Workspace)/drop/ExpertaPreview.AzureDnsZoneManager-*.vsix'
+      publisherId: ${{ parameters.publisherId }}
+      extensionId: ${{ parameters.extensionId }}
+      extensionName: ${{ parameters.extensionName }}
+      updateTasksVersion: false
+      updateTasksId: ${{ parameters.updateTasksId }}
+      extensionVisibility: ${{ parameters.extensionVisibility }}
+      extensionPricing: free
+      shareWith: ${{ parameters.shareWith }}
+  - task: GitHubRelease@1
+    displayName: ${{ parameters.releaseNoteDisplayName }}
+    inputs:
+      gitHubConnection: ExpertaSolutionsGitHub
+      action: ${{ parameters.releaseNoteAction }}
+      tag: ${{ parameters.releaseNoteVersion }}
+      title: ${{ parameters.releaseNoteVersion }}
+      releaseNotesFilePath: '$(Pipeline.Workspace)/drop/CurrentReleaseNotes.md'
+      isDraft: ${{ parameters.releaseNoteIsDraft }}
+      isPreRelease: ${{ parameters.releaseNoteIsPreRelease }}
+      addChangeLog: false
