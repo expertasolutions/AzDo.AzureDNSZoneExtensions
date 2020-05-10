@@ -99,9 +99,9 @@ stages:
               updateTasksId: true
               extensionVisibility: privatepreview
               shareWith: experta
+              releaseNoteAction: create
               releaseNoteVersion: '$(build.fullVersion)'
               releasenoteDisplayName: 'Update Draft to Pre-Release notes'
-              releaseNotesFilePath: true
               releaseNoteIsDraft: true
 
   - job: WaitForExtension
@@ -181,6 +181,7 @@ stages:
               updateTasksId: true
               extensionVisibility: private
               shareWith: experta
+              releaseNoteAction: edit
               releaseNoteVersion: '$(build.fullVersion)'
               releasenoteDisplayName: 'Update Draft to Pre-Release notes'
               releaseNoteIsPreRelease: true
@@ -205,6 +206,6 @@ stages:
               extensionName: 'Azure DNS zone manager'
               extensionVisibility: public
               shareWith: experta
-              releaseNote: edit
+              releaseNoteAction: edit
               releaseNoteVersion: '$(build.fullVersion)'
               releasenoteDisplayName: 'Update Pre-Release to Release notes'
