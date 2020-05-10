@@ -13,10 +13,6 @@ steps:
     inputs: 
       script: |
         echo ${{ parameters.azureSubscriptionName }}
-
-  - task: CmdLine@2
-    inputs: 
-      script: |
         echo $(domainNameResourceGroup)
 
   - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
