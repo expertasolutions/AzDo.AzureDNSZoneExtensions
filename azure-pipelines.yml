@@ -125,7 +125,7 @@ stages:
               addChangeLog: false
 
   - job: WaitForExtension
-    dependsOn: ExpertaPrivatePreview
+    dependsOn: DeployExtension
     pool: Server
     steps:
     - task: Delay@1
