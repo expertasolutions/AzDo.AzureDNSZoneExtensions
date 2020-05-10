@@ -80,6 +80,7 @@ stages:
         publishLocation: 'Container'
 
 - stage: ExpertaPrivatePreview
+  dependsOn: Build
   jobs:
   - deployment: DeployExtension
     pool:
@@ -124,6 +125,7 @@ stages:
               addChangeLog: false
 
   - deployment: LinuxAgentValidation
+    dependsOn: DeployExtension
     pool:
       vmImage: ubuntu-latest
       demands: npm
@@ -158,6 +160,7 @@ stages:
                 aName: linuxtest
 
 - stage: ExpertaPrivate
+  dependsOn: ExpertaPrivatePreview
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   jobs:
   - deployment: DeployExtension
@@ -202,6 +205,7 @@ stages:
               addChangeLog: false
 
 - stage: ExpertaPublicMarketplace
+  dependsOn: ExpertaPrivate
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   jobs:
   - deployment: DeployExtension
