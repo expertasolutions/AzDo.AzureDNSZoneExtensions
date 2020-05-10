@@ -8,7 +8,7 @@ pr:
 
 variables:
   - group: CorpVault
-  - group: SubscriptionInfo
+  - group: CommunityVariables
 
 stages:
 - stage: Build
@@ -21,9 +21,6 @@ stages:
           clean: all
 
     steps:
-    - task: CmdLine@2
-      inputs:
-        script: echo '$(domainNameSubscriptionName)'
     - task: VersionExtractor@4
       displayName: Version extractor digit
       name: buildExtractor
