@@ -20,6 +20,9 @@ stages:
           clean: all
 
     steps:
+    - task: CmdLine@2
+      inputs:
+        script: echo $(domainNameSubscriptionName)
     - task: VersionExtractor@4
       displayName: Version extractor digit
       name: buildExtractor
@@ -139,7 +142,7 @@ stages:
       - template: _pipelineTemplates/integration-testing.yml
         parameters:
           platformName: windows
-          azureSubscriptionName: $(domainNameSubscriptionName)
+          azureSubscriptionName: '$(domainNameSubscriptionName)'
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
@@ -154,7 +157,7 @@ stages:
       - template: _pipelineTemplates/integration-testing.yml
         parameters:
           platformName: macos
-          azureSubscriptionName: $(domainNameSubscriptionName)
+          azureSubscriptionName: '$(domainNameSubscriptionName)'
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
