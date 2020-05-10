@@ -8,11 +8,13 @@ pr:
 
 stages:
 - stage: Build
-  pool:
-    vmImage: macOS-latest
-    demands: npm
-    workspace:
-        clean: all
+  jobs:
+  - job: Build
+    pool:
+      vmImage: macOS-latest
+      demands: npm
+      workspace:
+          clean: all
 
     steps:
     - task: VersionExtractor@4
