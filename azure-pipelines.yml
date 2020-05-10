@@ -117,48 +117,48 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
       demands: npm
-    environment: LinuxAgentValidation
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-            - template: integration-testing.yml
-              parameters:
-                platformName: linux
-                domainResourceGroup: expertadomain
-                domainName: experta.ca
+    #environment: WindowsAgentValidation
+    #strategy:
+    #  runOnce:
+    #    deploy:
+    steps:
+      - template: integration-testing.yml
+        parameters:
+          platformName: linux
+          domainResourceGroup: expertadomain
+          domainName: experta.ca
 
   - job: WindowsAgentValidation
     dependsOn: WaitForExtension
     pool:
       vmImage: windows-latest
       demands: npm
-    environment: WindowsAgentValidation
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-            - template: integration-testing.yml
-              parameters:
-                platformName: windows
-                domainResourceGroup: expertadomain
-                domainName: experta.ca
+    #environment: WindowsAgentValidation
+    #strategy:
+    #  runOnce:
+    #    deploy:
+    steps:
+      - template: integration-testing.yml
+        parameters:
+          platformName: windows
+          domainResourceGroup: expertadomain
+          domainName: experta.ca
 
   - job: macOSAgentValidation
     dependsOn: WaitForExtension
     pool:
       vmImage: macOS-latest
       demands: npm
-    environment: macOSAgentValidation
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-            - template: integration-testing.yml
-              parameters:
-                platformName: macos
-                domainResourceGroup: expertadomain
-                domainName: experta.ca
+    #environment: macOSAgentValidation
+    #strategy:
+    #  runOnce:
+    #    deploy:
+    steps:
+      - template: integration-testing.yml
+        parameters:
+          platformName: macos
+          domainResourceGroup: expertadomain
+          domainName: experta.ca
 
 - stage: ExpertaPrivate
   dependsOn: ExpertaPrivatePreview
