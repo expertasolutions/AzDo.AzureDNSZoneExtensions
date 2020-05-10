@@ -123,7 +123,7 @@ stages:
       - template: integration-testing.yml
         parameters:
           platformName: linux
-          azureSubscriptionEndpoint: $(domainNameSubscriptionName)
+          azureSubscriptionEndpoint: '$(domainNameSubscriptionName)'
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
