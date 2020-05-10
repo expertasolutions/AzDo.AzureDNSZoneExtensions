@@ -91,38 +91,18 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: VersionExtractor@5
-            name: build
-            displayName: 'Version extractor digit'
-            inputs:
-              stringToAnalyze: '$(build.buildnumber)'
-          - task: TfxInstaller@2
-            displayName: 'Use Node CLI for Azure DevOps (tfx-cli): v0.6.x'
-          - task: PublishAzureDevOpsExtension@2
-            displayName: 'Publish Extension'
-            inputs:
-              connectedServiceName: 'ExpertaSolutions Marketplace (Community)'
-              fileType: vsix
-              vsixFile: '$(Pipeline.Workspace)/drop/ExpertaPreview.AzureDnsZoneManager-*.vsix'
+          - template: extension-deploy.yml
+            parameters:
               publisherId: ExpertaPreview
               extensionId: pvAzDNSZone
               extensionName: 'Private Preview - Azure DNS zone manager'
-              updateTasksVersion: false
               updateTasksId: true
               extensionVisibility: privatepreview
-              extensionPricing: free
               shareWith: experta
-          - task: GitHubRelease@1
-            displayName: 'Create Draft Release Note'
-            condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-            inputs:
-              gitHubConnection: ExpertaSolutionsGitHub
-              tagSource: userSpecifiedTag
-              tag: '$(build.fullVersion)'
-              title: '$(build.fullVersion)'
-              releaseNotesFilePath: '$(PipelineWorkspace)/drop/CurrentReleaseNotes.md'
-              isDraft: true
-              addChangeLog: false
+              releaseNoteVersion: '$(build.fullVersion)'
+              releasenoteDisplayName: 'Update Draft to Pre-Release notes'
+              releaseNotesFilePath: true
+              releaseNoteIsDraft: true
 
   - job: WaitForExtension
     dependsOn: DeployExtension
@@ -163,7 +143,7 @@ stages:
                 platformName: windows
                 domainResourceGroup: expertadomain
                 domainName: experta.ca
-                
+
   - deployment: macOSAgentValidation
     dependsOn: WaitForExtension
     pool:
@@ -193,37 +173,17 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: VersionExtractor@5
-            name: build
-            displayName: 'Version extractor digit'
-            inputs:
-              stringToAnalyze: '$(build.buildnumber)'
-          - task: TfxInstaller@2
-            displayName: 'Use Node CLI for Azure DevOps (tfx-cli): v0.6.x'
-          - task: PublishAzureDevOpsExtension@2
-            displayName: 'Publish Extension'
-            inputs:
-              connectedServiceName: 'ExpertaSolutions Marketplace (Community)'
-              fileType: vsix
-              vsixFile: '$(Pipeline.Workspace)/drop/ExpertaPreview.AzureDnsZoneManager-*.vsix'
+          - template: extension-deploy.yml
+            parameters:
               publisherId: ExpertaPreview
               extensionId: privateAzDNSZone
               extensionName: 'Private - Azure DNS zone manager'
-              updateTasksVersion: false
               updateTasksId: true
               extensionVisibility: private
-              extensionPricing: free
               shareWith: experta
-          - task: GitHubRelease@1
-            displayName: 'Update Draft to Pre-Release notes'
-            inputs:
-              gitHubConnection: ExpertaSolutionsGitHub
-              action: edit
-              tag: '$(build.fullVersion)'
-              title: '$(build.fullVersion)'
-              releaseNotesFilePath: '$(Pipeline.Workspace)/drop/CurrentReleaseNotes.md'
-              isPreRelease: true
-              addChangeLog: false
+              releaseNoteVersion: '$(build.fullVersion)'
+              releasenoteDisplayName: 'Update Draft to Pre-Release notes'
+              releaseNoteIsPreRelease: true
 
 - stage: ExpertaPublicMarketplace
   dependsOn: ExpertaPrivate
@@ -238,29 +198,13 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: VersionExtractor@5
-            name: build
-            displayName: 'Version extractor digit'
-            inputs:
-              stringToAnalyze: '$(build.buildnumber)'
-          - task: TfxInstaller@2
-            displayName: 'Use Node CLI for Azure DevOps (tfx-cli): v0.6.x'
-          - task: PublishAzureDevOpsExtension@2
-            displayName: 'Publish Extension'
-            inputs:
-              connectedServiceName: 'ExpertaSolutions Marketplace (Community)'
-              fileType: vsix
-              vsixFile: '$(Pipeline.Workspace)/drop/ExpertaPreview.AzureDnsZoneManager-*.vsix'
+          - template: extension-deploy.yml
+            parameters:
               publisherId: experta
-              updateTasksVersion: false
+              extensionId: azurednszonemanager
+              extensionName: 'Azure DNS zone manager'
               extensionVisibility: public
-              extensionPricing: free
-          - task: GitHubRelease@1
-            displayName: 'Update Pre-Release to Release notes'
-            inputs:
-              gitHubConnection: ExpertaSolutionsGitHub
-              action: edit
-              tag: '$(build.fullVersion)'
-              title: '$(build.fullVersion)'
-              releaseNotesFilePath: '$(Pipeline.Workspace)/drop/CurrentReleaseNotes.md'
-              addChangeLog: false
+              shareWith: experta
+              releaseNote: edit
+              releaseNoteVersion: '$(build.fullVersion)'
+              releasenoteDisplayName: 'Update Pre-Release to Release notes'
