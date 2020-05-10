@@ -120,10 +120,11 @@ stages:
       vmImage: 'ubuntu-latest'
       demands: npm
     steps:
+      - script: echo $(domainNameSubscriptionName)
       - template: integration-testing.yml
         parameters:
           platformName: linux
-          azureSubscriptionEndpoint: Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)
+          azureSubscriptionEndpoint: $(domainNameSubscriptionName)
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
