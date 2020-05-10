@@ -120,11 +120,10 @@ stages:
       vmImage: 'ubuntu-latest'
       demands: npm
     steps:
-      - script: echo $(domainNameSubscriptionName)
+      - script: echo $(domainNameResourceGroup)
       - template: integration-testing.yml
         parameters:
           platformName: linux
-          azureSubscriptionEndpoint: $(domainNameSubscriptionName)
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
