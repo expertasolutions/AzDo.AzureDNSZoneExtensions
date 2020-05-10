@@ -52,6 +52,7 @@ steps:
     inputs:
       gitHubConnection: ExpertaSolutionsGitHub
       action: ${{ parameters.releaseNoteAction }}
+      tagSource: userSpecifiedTag
       tag: ${{ parameters.releaseNoteVersion }}
       title: ${{ parameters.releaseNoteVersion }}
       releaseNotesFilePath: '$(Pipeline.Workspace)/drop/CurrentReleaseNotes.md'

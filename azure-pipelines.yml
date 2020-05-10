@@ -101,7 +101,7 @@ stages:
               shareWith: experta
               releaseNoteAction: create
               releaseNoteVersion: '$(build.fullVersion)'
-              releasenoteDisplayName: 'Update Draft to Pre-Release notes'
+              releasenoteDisplayName: 'Create Draft Release Note'
               releaseNoteIsDraft: true
 
   - job: WaitForExtension
