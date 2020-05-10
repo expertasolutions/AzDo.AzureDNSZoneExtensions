@@ -145,6 +145,8 @@ stages:
             - template: integration-testing.yml
               parameters:
                 platformName: linux
+                domainResourceGroup: expertadomain
+                domainName: experta.ca
 
 - stage: ExpertaPrivate
   dependsOn: ExpertaPrivatePreview
