@@ -125,7 +125,7 @@ stages:
               addChangeLog: false
           - task: Delay@1
             inputs:
-              delayForMinutes: '2'
+              #delayForMinutes: '2'
 
   - deployment: LinuxAgentValidation
     dependsOn: DeployExtension
