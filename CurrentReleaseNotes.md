@@ -1,7 +1,7 @@
 ## Related Issues
 
-- ### [Issue0062](https://github.com/expertasolutions/AzureDNSZoneExtensions/issues/62)
+- ### [Issue0065](https://github.com/expertasolutions/AzureDNSZoneExtensions/issues/65)
 
-  - Add Metadata definition capabality on 'A','CNAME' and 'TXT' tasks
+  - Convert Classic Release Pipeline to CI/CD Yaml Pipeline
 
-    ![Issue0062-01](_ReleaseNotes/Issue0062/Issue0062-01.png)
+    ![Issue0065-01](_ReleaseNotes/Issue0062/Issue0065-01.png)
