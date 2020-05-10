@@ -113,30 +113,25 @@ stages:
         delayForMinutes: '2'
 
   - job: LinuxAgentValidation
+    variables:
+    - group: CorpVault
     dependsOn: WaitForExtension
     pool:
       vmImage: 'ubuntu-latest'
       demands: npm
-    #environment: WindowsAgentValidation
-    #strategy:
-    #  runOnce:
-    #    deploy:
     steps:
       - template: integration-testing.yml
         parameters:
           platformName: linux
-          domainResourceGroup: expertadomain
-          domainName: experta.ca
+          azureSubscriptionEndpoint: $[variables.domainNameSubscriptionName]
+          domainResourceGroup: $[variables.domainNameResourceGroup]
+          domainName: $[variables.defaultDomainName]
 
   - job: WindowsAgentValidation
     dependsOn: WaitForExtension
     pool:
       vmImage: windows-latest
       demands: npm
-    #environment: WindowsAgentValidation
-    #strategy:
-    #  runOnce:
-    #    deploy:
     steps:
       - template: integration-testing.yml
         parameters:
@@ -149,10 +144,6 @@ stages:
     pool:
       vmImage: macOS-latest
       demands: npm
-    #environment: macOSAgentValidation
-    #strategy:
-    #  runOnce:
-    #    deploy:
     steps:
       - template: integration-testing.yml
         parameters:
