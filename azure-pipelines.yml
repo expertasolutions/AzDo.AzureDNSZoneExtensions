@@ -112,7 +112,7 @@ stages:
       inputs:
         delayForMinutes: '2'
 
-  - deployment: LinuxAgentValidation
+  - job: LinuxAgentValidation
     dependsOn: WaitForExtension
     pool:
       vmImage: 'ubuntu-latest'
@@ -128,7 +128,7 @@ stages:
                 domainResourceGroup: expertadomain
                 domainName: experta.ca
 
-  - deployment: WindowsAgentValidation
+  - job: WindowsAgentValidation
     dependsOn: WaitForExtension
     pool:
       vmImage: windows-latest
@@ -144,7 +144,7 @@ stages:
                 domainResourceGroup: expertadomain
                 domainName: experta.ca
 
-  - deployment: macOSAgentValidation
+  - job: macOSAgentValidation
     dependsOn: WaitForExtension
     pool:
       vmImage: macOS-latest
