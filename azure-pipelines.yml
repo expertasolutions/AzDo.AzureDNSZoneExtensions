@@ -11,8 +11,8 @@ stages:
   pool:
     vmImage: macOS-latest
     demands: npm
-  workspace:
-      clean: all
+    workspace:
+        clean: all
 
   steps:
   - task: VersionExtractor@4
