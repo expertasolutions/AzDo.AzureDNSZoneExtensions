@@ -120,15 +120,17 @@ stages:
       vmImage: 'ubuntu-latest'
       demands: npm
     steps:
-      - script: echo $(domainNameResourceGroup)
       - template: integration-testing.yml
         parameters:
           platformName: linux
-          azureSubscriptionName: $(domainNameSubscriptionName)
+          azureSubscriptionName: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+          #azureSubscriptionName: $(domainNameResourceGroup)
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
   - job: WindowsAgentValidation
+    variables:
+    - group: CorpVault
     dependsOn: WaitForExtension
     pool:
       vmImage: windows-latest
@@ -137,10 +139,14 @@ stages:
       - template: integration-testing.yml
         parameters:
           platformName: windows
-          domainResourceGroup: expertadomain
-          domainName: experta.ca
+          azureSubscriptionName: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+          #azureSubscriptionName: $(domainNameResourceGroup)
+          domainResourceGroup: $(domainNameResourceGroup)
+          domainName: $(defaultDomainName)
 
   - job: macOSAgentValidation
+    variables:
+    - group: CorpVault
     dependsOn: WaitForExtension
     pool:
       vmImage: macOS-latest
@@ -149,8 +155,10 @@ stages:
       - template: integration-testing.yml
         parameters:
           platformName: macos
-          domainResourceGroup: expertadomain
-          domainName: experta.ca
+          azureSubscriptionName: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+          #azureSubscriptionName: $(domainNameResourceGroup)
+          domainResourceGroup: $(domainNameResourceGroup)
+          domainName: $(defaultDomainName)
 
 - stage: ExpertaPrivate
   dependsOn: ExpertaPrivatePreview

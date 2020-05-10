@@ -3,13 +3,10 @@ parameters:
   type: string
 - name: azureSubscriptionName
   type: string
-  default: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
 - name: domainResourceGroup
   type: string
-  default: expertadomain
 - name: domainName
   type: string
-  default: experta.ca
 
 steps:
   - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
