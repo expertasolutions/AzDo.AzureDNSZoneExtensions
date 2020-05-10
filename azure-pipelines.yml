@@ -147,7 +147,7 @@ stages:
                 platformName: linux
                 domainResourceGroup: expertadomain
                 domainName: experta.ca
-                
+
   - deployment: WindowsAgentValidation
     dependsOn: WaitForExtension
     pool:
@@ -163,6 +163,7 @@ stages:
                 platformName: windows
                 domainResourceGroup: expertadomain
                 domainName: experta.ca
+                
   - deployment: macOSAgentValidation
     dependsOn: WaitForExtension
     pool:

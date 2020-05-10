@@ -90,3 +90,91 @@ steps:
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       txt: ${{ parameters.platformName }}Test
+
+  - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
+    displayName: 'Add A Dns record - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      aName: ${{ parameters.platformName }}test
+      metadataList: 'env=dev;project=community'
+      ipAddress: 127.0.0.0
+  - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
+    displayName: 'Update A Dns record - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      aName: ${{ parameters.platformName }}test
+      metadataList: 'env=dev;project=community'
+      ipAddress: 127.0.0.1
+  - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
+    displayName: 'Remove A Dns record - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
+      actionType: remove
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      aName: ${{ parameters.platformName }}test
+      metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.cnameRecord-task.CNAMERecordManager@6
+    displayName: 'Add CNAME Dns record - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
+      actionType: createUpdate
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      cname: ${{ parameters.platformName }}test
+      alias: ${{ parameters.domainName }}
+      metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.cnameRecord-task.CNAMERecordManager@6
+    displayName: 'Update CNAME Dns record - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
+      actionType: createUpdate
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      cname: ${{ parameters.platformName }}test
+      alias: expertasolutions.com
+      metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.cnameRecord-task.CNAMERecordManager@6
+    displayName: 'Remove CNAME Dns record - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
+      actionType: remove
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      cname: ${{ parameters.platformName }}test
+      metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.txtRecord-task.TXTRecordManager@6
+    displayName: 'Create ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      txt: ${{ parameters.platformName }}Test
+      value: |
+        invalid1
+        invalid2
+      metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.txtRecord-task.TXTRecordManager@6
+    displayName: 'Update ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      txt: ${{ parameters.platformName }}Test
+      value: |
+        invalidupdate1
+        invalidupdate2
+      metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.txtRecord-task.TXTRecordManager@6
+    displayName: 'Remove ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
+      actionType: remove
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      txt: ${{ parameters.platformName }}Test
+      metadataList: 'env=dev;project=community'
