@@ -124,6 +124,7 @@ stages:
               addChangeLog: false
 
 - stage: ExpertaPrivate
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   jobs:
   - deployment: DeployExtension
     pool:
@@ -167,6 +168,7 @@ stages:
               addChangeLog: false
 
 - stage: ExpertaPublicMarketplace
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   jobs:
   - deployment: DeployExtension
     pool:
