@@ -6,71 +6,205 @@ trigger:
 pr:
 - master
 
-pool:
-  vmImage: macOS-latest
-  demands: npm
-workspace:
-    clean: all
+variables:
+  - group: CorpVault
+  - group: CommunityVariables
 
-steps:
-- task: VersionExtractor@4
-  displayName: Version extractor digit
-  name: buildExtractor
-  inputs:
-    stringToAnalyze: '$(build.buildNumber)'
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+      vmImage: macOS-latest
+      demands: npm
+      workspace:
+          clean: all
 
-- task: TfxInstaller@2
-  displayName: "Use Node CLI for Azure DevOps (tfx-cli): v0.6.x"
-  inputs:
-    version: 'v0.6.x'
+    steps:
+    - task: VersionExtractor@4
+      displayName: Version extractor digit
+      name: buildExtractor
+      inputs:
+        stringToAnalyze: '$(build.buildNumber)'
 
-- task: Npm@1
-  displayName: TypeScript Install
-  inputs:
-    command: 'custom'
-    workingDir: 'aRecordManager'
-    customCommand: 'install -g typescript'
+    - task: TfxInstaller@2
+      displayName: "Use Node CLI for Azure DevOps (tfx-cli): v0.6.x"
+      inputs:
+        version: 'v0.6.x'
 
-- task: Npm@1
-  displayName: Build ARecordManager
-  inputs:
-    command: 'custom'
-    workingDir: 'aRecordManager'
-    customCommand: 'run publishExt'
+    - task: Npm@1
+      displayName: TypeScript Install
+      inputs:
+        command: 'custom'
+        workingDir: 'aRecordManager'
+        customCommand: 'install -g typescript'
 
-- task: Npm@1
-  displayName: Build CNAMERecordManager
-  inputs:
-    command: 'custom'
-    workingDir: 'cnameRecordManager'
-    customCommand: 'run publishExt'
+    - task: Npm@1
+      displayName: Build ARecordManager
+      inputs:
+        command: 'custom'
+        workingDir: 'aRecordManager'
+        customCommand: 'run publishExt'
 
-- task: Npm@1
-  displayName: Build TXTRecordManager
-  inputs:
-    command: 'custom'
-    workingDir: 'txtRecordManager'
-    customCommand: 'run publishExt'
+    - task: Npm@1
+      displayName: Build CNAMERecordManager
+      inputs:
+        command: 'custom'
+        workingDir: 'cnameRecordManager'
+        customCommand: 'run publishExt'
 
-- task: PackageAzureDevOpsExtension@2
-  displayName: Package Extension
-  inputs:
-    rootFolder: 
-    extensionVersion: '$(buildExtractor.fullVersion)'
-    updateTasksVersion: true
+    - task: Npm@1
+      displayName: Build TXTRecordManager
+      inputs:
+        command: 'custom'
+        workingDir: 'txtRecordManager'
+        customCommand: 'run publishExt'
 
-- task: CopyFiles@2
-  displayName: Copy *.vsix
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: |
-      *.vsix
-      CurrentReleaseNotes.md
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PackageAzureDevOpsExtension@2
+      displayName: Package Extension
+      inputs:
+        rootFolder: 
+        extensionVersion: '$(buildExtractor.fullVersion)'
+        updateTasksVersion: true
 
-- task: PublishBuildArtifacts@1
-  displayName: Publish Artifact
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    - task: CopyFiles@2
+      displayName: Copy *.vsix
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)'
+        Contents: |
+          *.vsix
+          CurrentReleaseNotes.md
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Artifact
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+
+- stage: ExpertaPrivatePreview
+  dependsOn: Build
+  jobs:
+  - deployment: DeployExtension
+    pool:
+      vmImage: macOS-latest
+      demands: npm
+    environment: ExpertaPrivatePreview
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: _pipelineTemplates/extension-deploy.yml
+            parameters:
+              publisherId: ExpertaPreview
+              extensionId: pvAzDNSZone
+              extensionName: 'Private Preview - Azure DNS zone manager'
+              updateTasksId: true
+              extensionVisibility: privatepreview
+              shareWith: experta
+              releaseNoteAction: create
+              releaseNoteVersion: '$(build.fullVersion)'
+              releasenoteDisplayName: 'Create Draft Release Note'
+              releaseNoteIsDraft: true
+
+  - job: WaitForExtension
+    dependsOn: DeployExtension
+    pool: Server
+    steps:
+    - task: Delay@1
+      inputs:
+        delayForMinutes: '2'
+
+  - job: LinuxAgentValidation
+    dependsOn: WaitForExtension
+    pool:
+      vmImage: 'ubuntu-latest'
+      demands: npm
+    steps:
+      - template: _pipelineTemplates/integration-testing.yml
+        parameters:
+          platformName: linux
+          azureSubscriptionName: '$(domainNameSubscriptionName)'
+          domainResourceGroup: $(domainNameResourceGroup)
+          domainName: $(defaultDomainName)
+
+  - job: WindowsAgentValidation
+    variables:
+    - group: CorpVault
+    dependsOn: WaitForExtension
+    pool:
+      vmImage: windows-latest
+      demands: npm
+    steps:
+      - template: _pipelineTemplates/integration-testing.yml
+        parameters:
+          platformName: windows
+          azureSubscriptionName: '$(domainNameSubscriptionName)'
+          domainResourceGroup: $(domainNameResourceGroup)
+          domainName: $(defaultDomainName)
+
+  - job: macOSAgentValidation
+    variables:
+    - group: CorpVault
+    dependsOn: WaitForExtension
+    pool:
+      vmImage: macOS-latest
+      demands: npm
+    steps:
+      - template: _pipelineTemplates/integration-testing.yml
+        parameters:
+          platformName: macos
+          azureSubscriptionName: '$(domainNameSubscriptionName)'
+          domainResourceGroup: $(domainNameResourceGroup)
+          domainName: $(defaultDomainName)
+
+- stage: ExpertaPrivate
+  dependsOn: ExpertaPrivatePreview
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment: DeployExtension
+    pool:
+      vmImage: macOS-latest
+      demands: npm
+    environment: ExpertaPrivate
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: _pipelineTemplates/extension-deploy.yml
+            parameters:
+              publisherId: ExpertaPreview
+              extensionId: privateAzDNSZone
+              extensionName: 'Private - Azure DNS zone manager'
+              updateTasksId: true
+              extensionVisibility: private
+              shareWith: experta
+              releaseNoteAction: edit
+              releaseNoteVersion: '$(build.fullVersion)'
+              releasenoteDisplayName: 'Update Draft to Pre-Release notes'
+              releaseNoteIsPreRelease: true
+
+- stage: ExpertaPublicMarketplace
+  dependsOn: ExpertaPrivate
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment: DeployExtension
+    pool:
+      vmImage: macOS-latest
+      demands: npm
+    environment: ExpertaPublicMarketplace
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: _pipelineTemplates/extension-deploy.yml
+            parameters:
+              publisherId: experta
+              extensionId: azurednszonemanager
+              extensionName: 'Azure DNS zone manager'
+              extensionVisibility: public
+              shareWith: experta
+              releaseNoteAction: edit
+              releaseNoteVersion: '$(build.fullVersion)'
+              releasenoteDisplayName: 'Update Pre-Release to Release notes'

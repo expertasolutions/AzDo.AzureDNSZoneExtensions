@@ -73,7 +73,6 @@ async function run() {
 
       let metadata = undefined;
       if(mdString !== undefined) {
-        console.log("Metadata Object: " + mdString);
         metadata = JSON.parse("{" + mdString + "}");
       }
 
