@@ -9,6 +9,12 @@ parameters:
   type: string
 
 steps:
+  - task: CmdLine@2
+    input: echo ${{ parameters.azureSubscriptionName }}
+
+  - task: CmdLine@2
+    input: echo $(domainNameResourceGroup)
+
   - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
     displayName: 'Add A Dns record - notags'
     inputs:
