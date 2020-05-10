@@ -1,6 +1,9 @@
 parameters:
 - name: platformName
   type: string
+- name: azureSubscriptionEndpoint
+  type: string
+  default: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
 - name: domainResourceGroup
   type: string
   default: expertadomain
@@ -10,59 +13,59 @@ parameters:
 
 steps:
   - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
-    displayName: 'Add A Dns record'
+    displayName: 'Add A Dns record - notags'
     inputs:
-      azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       aName: ${{ parameters.platformName }}test
       ipAddress: 127.0.0.0
   - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
-    displayName: 'Update A Dns record'
+    displayName: 'Update A Dns record - notags'
     inputs:
-      azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       aName: ${{ parameters.platformName }}test
       ipAddress: 127.0.0.1
   - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
-    displayName: 'Remove A Dns record'
+    displayName: 'Remove A Dns record - notags'
     inputs:
-      azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
       actionType: remove
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       aName: ${{ parameters.platformName }}test
   - task: ExpertaPreview.pvAzDNSZone.cnameRecord-task.CNAMERecordManager@6
-    displayName: 'Add CNAME Dns record'
+    displayName: 'Add CNAME Dns record - notags'
     inputs:
-      azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
       actionType: createUpdate
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       cname: ${{ parameters.platformName }}test
       alias: ${{ parameters.domainName }}
   - task: ExpertaPreview.pvAzDNSZone.cnameRecord-task.CNAMERecordManager@6
-    displayName: 'Update CNAME Dns record'
+    displayName: 'Update CNAME Dns record - notags'
     inputs:
-      azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
       actionType: createUpdate
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       cname: ${{ parameters.platformName }}test
       alias: expertasolutions.com
   - task: ExpertaPreview.pvAzDNSZone.cnameRecord-task.CNAMERecordManager@6
-    displayName: 'Remove CNAME Dns record'
+    displayName: 'Remove CNAME Dns record - notags'
     inputs:
-      azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
       actionType: remove
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       cname: ${{ parameters.platformName }}test
   - task: ExpertaPreview.pvAzDNSZone.txtRecord-task.TXTRecordManager@6
-    displayName: 'Create ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca'
+    displayName: 'Create ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca - notags'
     inputs:
-      azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       txt: ${{ parameters.platformName }}Test
@@ -70,9 +73,9 @@ steps:
         invalid1
         invalid2
   - task: ExpertaPreview.pvAzDNSZone.txtRecord-task.TXTRecordManager@6
-    displayName: 'Update ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca'
+    displayName: 'Update ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca - notags'
     inputs:
-      azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       txt: ${{ parameters.platformName }}Test
@@ -80,9 +83,9 @@ steps:
         invalidupdate1
         invalidupdate2
   - task: ExpertaPreview.pvAzDNSZone.txtRecord-task.TXTRecordManager@6
-    displayName: 'Remove ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca'
+    displayName: 'Remove ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca - notags'
     inputs:
-      azureSubscriptionEndpoint: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
       actionType: remove
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
