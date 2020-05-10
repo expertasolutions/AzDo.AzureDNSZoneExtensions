@@ -22,7 +22,7 @@ stages:
     steps:
     - task: CmdLine@2
       inputs:
-        script: echo $(domainNameSubscriptionName)
+        script: echo '$(domainNameSubscriptionName)'
     - task: VersionExtractor@4
       displayName: Version extractor digit
       name: buildExtractor
