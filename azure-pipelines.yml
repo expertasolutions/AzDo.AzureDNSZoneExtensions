@@ -124,7 +124,7 @@ stages:
       - template: _pipelineTemplates/integration-testing.yml
         parameters:
           platformName: linux
-          azureSubscriptionName: '$(domainNameResourceGroup)'
+          azureSubscriptionName: '$(domainNameSubscriptionName)'
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
@@ -139,7 +139,7 @@ stages:
       - template: _pipelineTemplates/integration-testing.yml
         parameters:
           platformName: windows
-          azureSubscriptionName: $(domainNameResourceGroup)
+          azureSubscriptionName: $(domainNameSubscriptionName)
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
@@ -154,7 +154,7 @@ stages:
       - template: _pipelineTemplates/integration-testing.yml
         parameters:
           platformName: macos
-          azureSubscriptionName: $(domainNameResourceGroup)
+          azureSubscriptionName: $(domainNameSubscriptionName)
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
