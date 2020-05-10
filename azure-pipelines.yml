@@ -139,8 +139,7 @@ stages:
       - template: integration-testing.yml
         parameters:
           platformName: windows
-          azureSubscriptionName: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
-          #azureSubscriptionName: $(domainNameResourceGroup)
+          azureSubscriptionName: $(domainNameResourceGroup)
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
@@ -155,8 +154,7 @@ stages:
       - template: integration-testing.yml
         parameters:
           platformName: macos
-          azureSubscriptionName: 'Solutions Experta Internal (Pay-as-You-Go) (c613aec0-2955-4f3a-8682-c9fc4aa4a998)'
-          #azureSubscriptionName: $(domainNameResourceGroup)
+          azureSubscriptionName: $(domainNameResourceGroup)
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
