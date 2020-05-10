@@ -17,7 +17,7 @@ steps:
   - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
     displayName: 'Add A Dns record - notags'
     inputs:
-      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      azureSubscriptionEndpoint: '${{ parameters.azureSubscriptionName }}'
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       aName: ${{ parameters.platformName }}test
