@@ -6,6 +6,9 @@ trigger:
 pr:
 - master
 
+variables:
+  - group: CorpVault
+
 stages:
 - stage: Build
   jobs:
@@ -113,8 +116,6 @@ stages:
         delayForMinutes: '2'
 
   - job: LinuxAgentValidation
-    variables:
-    - group: CorpVault
     dependsOn: WaitForExtension
     pool:
       vmImage: 'ubuntu-latest'
