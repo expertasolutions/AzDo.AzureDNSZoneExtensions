@@ -135,7 +135,7 @@ stages:
   - deployment: LinuxAgentValidation
     dependsOn: WaitForExtension
     pool:
-      vmImage: 'ubuntu-16.04'
+      vmImage: 'ubuntu-latest'
       demands: npm
     environment: LinuxAgentValidation
     strategy:
@@ -145,6 +145,36 @@ stages:
             - template: integration-testing.yml
               parameters:
                 platformName: linux
+                domainResourceGroup: expertadomain
+                domainName: experta.ca
+  - deployment: WindowsAgentValidation
+    dependsOn: WaitForExtension
+    pool:
+      vmImage: windows-latest
+      demands: npm
+    environment: WindowsAgentValidation
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - template: integration-testing.yml
+              parameters:
+                platformName: windows
+                domainResourceGroup: expertadomain
+                domainName: experta.ca
+  - deployment: macOSAgentValidation
+    dependsOn: WaitForExtension
+    pool:
+      vmImage: macOS-latest
+      demands: npm
+    environment: macOSAgentValidation
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - template: integration-testing.yml
+              parameters:
+                platformName: macos
                 domainResourceGroup: expertadomain
                 domainName: experta.ca
 
