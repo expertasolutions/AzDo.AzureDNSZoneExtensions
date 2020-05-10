@@ -124,6 +124,7 @@ stages:
       - template: integration-testing.yml
         parameters:
           platformName: linux
+          azureSubscriptionName: patate
           domainResourceGroup: $(domainNameResourceGroup)
           domainName: $(defaultDomainName)
 
