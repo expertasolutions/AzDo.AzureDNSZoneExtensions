@@ -125,6 +125,7 @@ stages:
               addChangeLog: false
 
   - job: WaitForExtension
+    dependsOn: ExpertaPrivatePreview
     pool: Server
     steps:
     - task: Delay@1
@@ -132,7 +133,7 @@ stages:
         delayForMinutes: '2'
 
   - deployment: LinuxAgentValidation
-    dependsOn: DeployExtension
+    dependsOn: WaitForExtension
     pool:
       vmImage: ubuntu-latest
       demands: npm
