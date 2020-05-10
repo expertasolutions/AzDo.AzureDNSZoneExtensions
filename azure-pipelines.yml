@@ -164,13 +164,13 @@ stages:
               isPreRelease: true
               addChangeLog: false
 
-- stage: ExpertaPrivate
+- stage: ExpertaPublicMarketplace
   jobs:
   - deployment: DeployExtension
     pool:
       vmImage: macOS-latest
       demands: npm
-    environment: ExpertaPrivate
+    environment: ExpertaPublicMarketplace
     strategy:
       runOnce:
         deploy:
