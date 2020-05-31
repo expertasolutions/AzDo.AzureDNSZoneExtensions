@@ -130,7 +130,7 @@
     "outputVariables" : [],
     "execution": {
         "Node": {
-          "target": "managecnamerecord.js",
+          "target": "managemxrecord.js",
           "argumentFormat": ""
         }
       }
