@@ -40,7 +40,7 @@ async function run() {
     console.log("ResourceGroupName: " + resourceGroupName);
     console.log("ActionType: " + actionType);
     console.log("DomainName: " + domainName);
-    console.log("SRV: " + cname);
+    console.log("SRV: " + srv);
     console.log("Metadata: " + metadataList);
 
     if(inCreationMode === true) {

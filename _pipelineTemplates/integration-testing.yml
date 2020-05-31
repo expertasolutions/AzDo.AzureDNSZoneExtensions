@@ -9,6 +9,7 @@ parameters:
   type: string
 
 steps:
+  # A DNS Record - No Tags
   - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
     displayName: 'Add A Dns record - notags'
     inputs:
@@ -33,6 +34,8 @@ steps:
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       aName: ${{ parameters.platformName }}test
+  
+  # CNAME DNS Record - No Tags
   - task: ExpertaPreview.pvAzDNSZone.cnameRecord-task.CNAMERecordManager@6
     displayName: 'Add CNAME Dns record - notags'
     inputs:
@@ -59,6 +62,8 @@ steps:
       resourceGroupName: ${{ parameters.domainResourceGroup }}
       domainName: ${{ parameters.domainName }}
       cname: ${{ parameters.platformName }}test
+  
+  # TXT DNS Record - NoTags
   - task: ExpertaPreview.pvAzDNSZone.txtRecord-task.TXTRecordManager@6
     displayName: 'Create ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca - notags'
     inputs:
@@ -88,6 +93,7 @@ steps:
       domainName: ${{ parameters.domainName }}
       txt: ${{ parameters.platformName }}Test
 
+  # A DNS Record - With tags
   - task: ExpertaPreview.pvAzDNSZone.custom-build-release-task.ARecordManager@6
     displayName: 'Add A Dns record - with tags'
     inputs:
@@ -115,6 +121,8 @@ steps:
       domainName: ${{ parameters.domainName }}
       aName: ${{ parameters.platformName }}test
       metadataList: 'env=dev;project=community'
+  
+  # CNAME DNS Record - with tags
   - task: ExpertaPreview.pvAzDNSZone.cnameRecord-task.CNAMERecordManager@6
     displayName: 'Add CNAME Dns record - with tags'
     inputs:
@@ -144,6 +152,8 @@ steps:
       domainName: ${{ parameters.domainName }}
       cname: ${{ parameters.platformName }}test
       metadataList: 'env=dev;project=community'
+  
+  # TXT DNS Record - With Tags
   - task: ExpertaPreview.pvAzDNSZone.txtRecord-task.TXTRecordManager@6
     displayName: 'Create ''${{ parameters.platformName }}Test'' TXT DNS record on experta.ca - with tags'
     inputs:
@@ -175,6 +185,8 @@ steps:
       domainName: ${{ parameters.domainName }}
       txt: ${{ parameters.platformName }}Test
       metadataList: 'env=dev;project=community'
+
+  # MX DNS Record - With Tags 
   - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.MXRecordManager@6
     displayName: 'Add ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - with tags'
     inputs:
@@ -197,3 +209,45 @@ steps:
       priority: 0
       mailExchange: update.expertasolutions-com.mail.protection.outlook.com
       metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.MXRecordManager@6
+    displayName: 'Remove ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: remove
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      mx: ${{ parameters.platformName }}test
+      priority: 0
+      mailExchange: expertasolutions-com.mail.protection.outlook.com
+      metadataList: 'env=dev;project=community'
+  # MX DNS Record - NoTags
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.MXRecordManager@6
+    displayName: 'Add ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: createUpdate
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      mx: ${{ parameters.platformName }}test
+      priority: 0
+      mailExchange: expertasolutions-com.mail.protection.outlook.com
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.MXRecordManager@6
+    displayName: 'Update ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: createUpdate
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      mx: ${{ parameters.platformName }}test
+      priority: 0
+      mailExchange: update.expertasolutions-com.mail.protection.outlook.com
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.MXRecordManager@6
+    displayName: 'Remove ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: remove
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      mx: ${{ parameters.platformName }}test
+      priority: 0
+      mailExchange: expertasolutions-com.mail.protection.outlook.com
