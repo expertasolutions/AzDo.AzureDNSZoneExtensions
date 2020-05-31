@@ -44,7 +44,7 @@
       { "path": "aRecordManager" }, 
       { "path": "cnameRecordManager" },
       { "path": "txtRecordManager" },
-      { "path": "mxRecordManager" },
+      { "path": "srvRecordManager" },
       { "path": "_img", "addressable": true }
   ],
   "badges": [{
@@ -89,13 +89,13 @@
           }
       },
       {
-          "id": "mxRecord-task",
+          "id": "srvRecord-task",
           "type": "ms.vss-distributed-task.task",
           "targets": [
               "ms.vss-distributed-task.tasks"
           ],
           "properties": {
-              "name": "mxRecordManager"
+              "name": "srvRecordManager"
           }
       }
     ]
