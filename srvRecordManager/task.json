@@ -74,24 +74,54 @@
           "groupName": "dnszonedetail"
         },
         {
-          "name": "cname",
+          "name": "srv",
           "type": "string",
-          "label": "CNAME record",
+          "label": "SRV record",
           "defaultValue": "",
           "required": true,
           "helpMarkDown": "",
           "groupName": "dnszonedetail"
         },
         {
-          "name": "alias",
+          "name": "priority",
           "type":"string",
-          "label": "Alias",
-          "defaultValue":"mydnsalias",
+          "label": "Priority",
+          "defaultValue": "0",
           "required": true,
           "helpMarkDown":"",
           "groupName": "dnszonedetail",
           "visibleRule": "actionType = createUpdate"
         },
+        {
+          "name": "weigth",
+          "type":"string",
+          "label": "Weight",
+          "defaultValue": "0",
+          "required": true,
+          "helpMarkDown":"",
+          "groupName": "dnszonedetail",
+          "visibleRule": "actionType = createUpdate"
+        },  
+        {
+          "name": "Port",
+          "type":"string",
+          "label": "Port",
+          "defaultValue": "0",
+          "required": true,
+          "helpMarkDown":"",
+          "groupName": "dnszonedetail",
+          "visibleRule": "actionType = createUpdate"
+        },        
+        {
+          "name": "Target",
+          "type":"string",
+          "label": "Target",
+          "defaultValue": "0",
+          "required": true,
+          "helpMarkDown":"",
+          "groupName": "dnszonedetail",
+          "visibleRule": "actionType = createUpdate"
+        },  
         {
           "name":"ttl",
           "type":"string",

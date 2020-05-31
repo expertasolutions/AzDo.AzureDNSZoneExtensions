@@ -11,11 +11,15 @@ async function run() {
     let azureEndpointSubscription = tl.getInput("azureSubscriptionEndpoint", true) as string;
     let resourceGroupName = tl.getInput("resourceGroupName", true) as string;
     let domainName = tl.getInput("domainName", true) as string;
-    let cname = tl.getInput("cname", true) as string;
+    let srv = tl.getInput("srv", true) as string;
     let actionType = tl.getInput("actionType", true) as string;
     let inCreationMode = actionType === "createUpdate";
 
-    let alias = tl.getInput("alias", inCreationMode) as string;
+    let priority = tl.getInput("priority", inCreationMode) as string;
+    let weight = tl.getInput("weight", inCreationMode) as string;
+    let port = tl.getInput("port", inCreationMode) as string;
+    let target = tl.getInput("target", inCreationMode) as string;
+
     let ttl = parseInt(tl.getInput("ttl", inCreationMode) as string);
     
     let subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false) as string;
@@ -36,11 +40,14 @@ async function run() {
     console.log("ResourceGroupName: " + resourceGroupName);
     console.log("ActionType: " + actionType);
     console.log("DomainName: " + domainName);
-    console.log("CName: " + cname);
+    console.log("SRV: " + cname);
     console.log("Metadata: " + metadataList);
 
     if(inCreationMode === true) {
-      console.log("Alias: " + alias);
+      console.log("Priority: " + priority);
+      console.log("Weight:" + weight);
+      console.log("Port: " + port);
+      console.log("Target: " + target);
       console.log("TTL: " + ttl);
     }
 
@@ -66,11 +73,11 @@ async function run() {
         metadata = JSON.parse("{" + mdString + "}");
       }
 
-      const myRecord = { tTL: ttl, cnameRecord: { cname: alias }, metadata: metadata };   
-      await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, cname, "CNAME", myRecord);
+      const myRecord = { tTL: ttl, srvRecord: { priority: priority, weight: weight, port: port, target: target }, metadata: metadata };   
+      await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, srv, "SRV", myRecord);
       console.log('Record ' + cname + ' is set');
     } else if(actionType === "remove"){
-      await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, cname, "CNAME");
+      await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, cname, "SRV");
       console.log('Record ' + cname + ' has been deleted');
     } else {
       throw new Error("Action type '" + actionType + "' not supported");
