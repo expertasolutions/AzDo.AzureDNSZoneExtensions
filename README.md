@@ -14,5 +14,11 @@ See ***[Release notes](https://github.com/expertasolutions/AzureDNSZoneExtension
 - ### CNAME Record Manager
   ![CNAMERecord_Task_inputs](_img/cnameRecord_v6.png)
 
+- ### MX Record Manager
+  ![MXRecord_Task_inputs](_img/mxRecord_v6.png)
+
+- ### SRV Record Manager
+  ![SRVRecord_Task_inputs](_img/srvRecord_v6.png)
+
 - ### TXT Record Manager
   ![CNAMERecord_Task_inputs](_img/txtRecord_v6.png)
