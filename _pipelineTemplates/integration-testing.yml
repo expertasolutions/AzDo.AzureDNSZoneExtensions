@@ -255,7 +255,7 @@ steps:
 
   # SRV DNS Record - NoTags
   - task: ExpertaPreview.pvAzDNSZone.srvRecord-task.SRVRecordManager@6
-    displayName: 'Add ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    displayName: 'Add ''${{ parameters.platformName }}Test'' SRV DNS record on experta.ca - no tags'
     inputs:
       azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
       actionType: createUpdate
@@ -267,7 +267,7 @@ steps:
       port: 5061
       target: sipfed.online.lync.com
   - task: ExpertaPreview.pvAzDNSZone.srvRecord-task.SRVRecordManager@6
-    displayName: 'Update ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    displayName: 'Update ''${{ parameters.platformName }}Test'' SRV DNS record on experta.ca - no tags'
     inputs:
       azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
       actionType: createUpdate
@@ -279,7 +279,7 @@ steps:
       port: 5061
       target: update.online.lync.com
   - task: ExpertaPreview.pvAzDNSZone.srvRecord-task.SRVRecordManager@6
-    displayName: 'Remove ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    displayName: 'Remove ''${{ parameters.platformName }}Test'' SRV DNS record on experta.ca - no tags'
     inputs:
       azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
       actionType: remove
@@ -293,7 +293,7 @@ steps:
 
   # SRV DNS Record - With_Tags
   - task: ExpertaPreview.pvAzDNSZone.srvRecord-task.SRVRecordManager@6
-    displayName: 'Add ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    displayName: 'Add ''${{ parameters.platformName }}Test'' SRV DNS record on experta.ca - no tags'
     inputs:
       azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
       actionType: createUpdate
@@ -306,7 +306,7 @@ steps:
       target: sipfed.online.lync.com
       metadataList: 'env=dev;project=community'
   - task: ExpertaPreview.pvAzDNSZone.srvRecord-task.SRVRecordManager@6
-    displayName: 'Update ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    displayName: 'Update ''${{ parameters.platformName }}Test'' SRV DNS record on experta.ca - no tags'
     inputs:
       azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
       actionType: createUpdate
@@ -319,7 +319,7 @@ steps:
       target: update.online.lync.com
       metadataList: 'env=dev;project=community'
   - task: ExpertaPreview.pvAzDNSZone.srvRecord-task.SRVRecordManager@6
-    displayName: 'Remove ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    displayName: 'Remove ''${{ parameters.platformName }}Test'' SRV DNS record on experta.ca - no tags'
     inputs:
       azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
       actionType: remove
