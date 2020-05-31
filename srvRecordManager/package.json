@@ -1,0 +1,18 @@
+{
+  "name": "CNAMERecordManager",
+  "version": "1.0.0",
+  "description": "Tasks packages to manage Azure DNS Zone Azure DevOps release pipeline.",
+  "main": "manageazurecnamerecord.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publishExt": "npm install && tsc -project tsconfig.json"
+  },
+  "author": "Solutions Experta Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "@azure/arm-dns": "^3.2.0",
+    "@azure/ms-rest-nodeauth": "^2.0.5",
+    "@types/q": "^1.5.2",
+    "azure-pipelines-task-lib": "^2.7.0"
+  }
+}
