@@ -75,10 +75,10 @@ async function run() {
 
       const myRecord = { tTL: ttl, srvRecord: { priority: priority, weight: weight, port: port, target: target }, metadata: metadata };   
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, srv, "SRV", myRecord);
-      console.log('Record ' + cname + ' is set');
+      console.log('Record ' + srv + ' is set');
     } else if(actionType === "remove"){
-      await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, cname, "SRV");
-      console.log('Record ' + cname + ' has been deleted');
+      await dnsClient.recordSets.deleteMethod(resourceGroupName, domainName, srv, "SRV");
+      console.log('Record ' + srv + ' has been deleted');
     } else {
       throw new Error("Action type '" + actionType + "' not supported");
     }

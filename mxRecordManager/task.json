@@ -96,7 +96,7 @@
           "name": "mailExchange",
           "type":"string",
           "label": "Mail Exchange",
-          "defaultValue":"0",
+          "defaultValue":"my.mail.exchange",
           "required": true,
           "helpMarkDown":"",
           "groupName": "dnszonedetail",
