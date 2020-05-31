@@ -15,7 +15,7 @@ stages:
   jobs:
   - job: Build
     pool:
-      vmImage: macOS-latest
+      vmImage: windowsOS-latest
       demands: npm
       workspace:
           clean: all
