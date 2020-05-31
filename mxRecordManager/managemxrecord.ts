@@ -16,10 +16,8 @@ async function run() {
     
     let inCreationMode = actionType === "createUpdate";
 
-    let priority = tl.getInput("priority", inCreationMode) as string;
+    let priority = parseInt(tl.getInput("priority", inCreationMode) as string);
     let mailExchange = tl.getInput("mailExchange", inCreationMode) as string;
-
-    let alias = tl.getInput("alias", inCreationMode) as string;
     let ttl = parseInt(tl.getInput("ttl", inCreationMode) as string);
     
     let subcriptionId = tl.getEndpointDataParameter(azureEndpointSubscription, "subscriptionId", false) as string;
