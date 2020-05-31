@@ -220,6 +220,7 @@ steps:
       priority: 0
       mailExchange: expertasolutions-com.mail.protection.outlook.com
       metadataList: 'env=dev;project=community'
+
   # MX DNS Record - NoTags
   - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.MXRecordManager@6
     displayName: 'Add ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
@@ -251,3 +252,82 @@ steps:
       mx: ${{ parameters.platformName }}test
       priority: 0
       mailExchange: expertasolutions-com.mail.protection.outlook.com
+
+  # SRV DNS Record - NoTags
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.SRVRecordManager@6
+    displayName: 'Add ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: createUpdate
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      srv: ${{ parameters.platformName }}test
+      priority: 100
+      weight: 1
+      port: 5061
+      target: sipfed.online.lync.com
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.SRVRecordManager@6
+    displayName: 'Update ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: createUpdate
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      srv: ${{ parameters.platformName }}test
+      priority: 100
+      weight: 1
+      port: 5061
+      target: update.online.lync.com
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.SRVRecordManager@6
+    displayName: 'Remove ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: remove
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      srv: ${{ parameters.platformName }}test
+      priority: 100
+      weight: 1
+      port: 5061
+      target: sipfed.online.lync.com
+
+  # SRV DNS Record - With_Tags
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.SRVRecordManager@6
+    displayName: 'Add ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: createUpdate
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      srv: ${{ parameters.platformName }}test
+      priority: 100
+      weight: 1
+      port: 5061
+      target: sipfed.online.lync.com
+      metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.SRVRecordManager@6
+    displayName: 'Update ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: createUpdate
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      srv: ${{ parameters.platformName }}test
+      priority: 100
+      weight: 1
+      port: 5061
+      target: update.online.lync.com
+      metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.SRVRecordManager@6
+    displayName: 'Remove ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - no tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: remove
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      srv: ${{ parameters.platformName }}test
+      priority: 100
+      weight: 1
+      port: 5061
+      target: sipfed.online.lync.com
+      metadataList: 'env=dev;project=community'
