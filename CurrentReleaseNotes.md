@@ -9,3 +9,7 @@
 
   - Add task to manage SRV DNS Record
   - Task is in preview
+
+- ### Other
+  
+  - Fix default value 'ActionType' 'CreateUpdate' to 'createUpdate'
