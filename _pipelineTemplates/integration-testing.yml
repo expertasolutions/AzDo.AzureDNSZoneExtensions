@@ -175,3 +175,25 @@ steps:
       domainName: ${{ parameters.domainName }}
       txt: ${{ parameters.platformName }}Test
       metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.MXRecordManager@6
+    displayName: 'Add ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: createUpdate
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      mx: ${{ parameters.platformName }}test
+      priority: 0
+      mailExchange: expertasolutions-com.mail.protection.outlook.com
+      metadataList: 'env=dev;project=community'
+  - task: ExpertaPreview.pvAzDNSZone.mxRecord-task.MXRecordManager@6
+    displayName: 'Update ''${{ parameters.platformName }}Test'' MX DNS record on experta.ca - with tags'
+    inputs:
+      azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionName }}
+      actionType: createUpdate
+      resourceGroupName: ${{ parameters.domainResourceGroup }}
+      domainName: ${{ parameters.domainName }}
+      mx: ${{ parameters.platformName }}test
+      priority: 0
+      mailExchange: update.expertasolutions-com.mail.protection.outlook.com
+      metadataList: 'env=dev;project=community'
