@@ -15,7 +15,7 @@ stages:
   jobs:
   - job: Build
     pool:
-      vmImage: macOS-latest
+      vmImage: windows-latest
       demands: npm
       workspace:
           clean: all
@@ -58,6 +58,20 @@ stages:
       inputs:
         command: 'custom'
         workingDir: 'txtRecordManager'
+        customCommand: 'run publishExt'
+    
+    - task: Npm@1
+      displayName: Build MXRecordManager
+      inputs:
+        command: 'custom'
+        workingDir: 'mxRecordManager'
+        customCommand: 'run publishExt'
+
+    - task: Npm@1
+      displayName: Build SRVRecordManager
+      inputs:
+        command: 'custom'
+        workingDir: 'srvRecordManager'
         customCommand: 'run publishExt'
 
     - task: PackageAzureDevOpsExtension@2
@@ -114,7 +128,7 @@ stages:
     steps:
     - task: Delay@1
       inputs:
-        delayForMinutes: '2'
+        delayForMinutes: '5'
 
   - job: LinuxAgentValidation
     dependsOn: WaitForExtension

@@ -1,11 +1,11 @@
 {
-  "id": "4c62cc28-b99a-4849-a717-b474839fe883",
-    "name": "CNAMERecordManager",
-    "friendlyName": "CNAME record DNS Manager",
-    "description": "Task to create/update a 'CNAME' Dns Record",
+  "id": "b4e12cbf-e135-4de5-aa9b-a19b09333b50",
+    "name": "MXRecordManager",
+    "friendlyName": "MX record DNS Manager",
+    "description": "Task to create/update a 'MX' Dns Record",
     "helpMarkDown": "",
     "category": "Utility",
-    "preview": false,
+    "preview": true,
     "author": "Solutions Experta Inc.",
     "visibility": [
       "Release"
@@ -15,7 +15,7 @@
         "Minor": 0,
         "Patch": 0
     },
-    "instanceNameFormat": "Manage '$(cname)' CNAME DNS record on $(domainName)",
+    "instanceNameFormat": "Manage '$(mx)' MX DNS record on $(domainName)",
     "groups": [
         {
           "name": "subazadadmin",
@@ -74,19 +74,29 @@
           "groupName": "dnszonedetail"
         },
         {
-          "name": "cname",
+          "name": "mx",
           "type": "string",
-          "label": "CNAME record",
+          "label": "MX record",
           "defaultValue": "",
           "required": true,
           "helpMarkDown": "",
           "groupName": "dnszonedetail"
         },
         {
-          "name": "alias",
+          "name": "priority",
           "type":"string",
-          "label": "Alias",
-          "defaultValue":"mydnsalias",
+          "label": "Priority",
+          "defaultValue":"0",
+          "required": true,
+          "helpMarkDown":"",
+          "groupName": "dnszonedetail",
+          "visibleRule": "actionType = createUpdate"
+        },
+        {
+          "name": "mailExchange",
+          "type":"string",
+          "label": "Mail Exchange",
+          "defaultValue":"my.mail.exchange",
           "required": true,
           "helpMarkDown":"",
           "groupName": "dnszonedetail",
@@ -130,7 +140,7 @@
     "outputVariables" : [],
     "execution": {
         "Node": {
-          "target": "managecnamerecord.js",
+          "target": "managemxrecord.js",
           "argumentFormat": ""
         }
       }

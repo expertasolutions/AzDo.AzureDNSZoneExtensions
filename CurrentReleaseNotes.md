@@ -1,5 +1,15 @@
 ## Related Issues
 
-- ### [Issue0065](https://github.com/expertasolutions/AzureDNSZoneExtensions/issues/65)
+- ### [Issue0068](https://github.com/expertasolutions/AzureDNSZoneExtensions/issues/68)
 
-  - Convert Classic Release Pipeline to CI/CD Yaml Pipeline
+  - Add task to manage MX DNS Record
+  - Task is in preview
+
+- ### [Issue0069](https://github.com/expertasolutions/AzureDNSZoneExtensions/issues/69)
+
+  - Add task to manage SRV DNS Record
+  - Task is in preview
+
+- ### Other
+  
+  - Fix default value 'ActionType' 'CreateUpdate' to 'createUpdate'
