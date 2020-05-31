@@ -69,7 +69,7 @@ async function run() {
         metadata = JSON.parse("{" + mdString + "}");
       }
 
-      const myRecord = { tTL: ttl, mxRecord: { preference: priority, exchange: mailExchange }, metadata: metadata };   
+      const myRecord = { tTL: ttl, mxRecords: [{ preference: priority, exchange: mailExchange }], metadata: metadata };   
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, mx, "MX", myRecord);
       console.log('Record ' + mx + ' is set');
     } else if(actionType === "remove"){

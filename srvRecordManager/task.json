@@ -93,7 +93,7 @@
           "visibleRule": "actionType = createUpdate"
         },
         {
-          "name": "weigth",
+          "name": "weight",
           "type":"string",
           "label": "Weight",
           "defaultValue": "0",

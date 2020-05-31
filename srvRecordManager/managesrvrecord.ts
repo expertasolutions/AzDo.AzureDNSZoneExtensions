@@ -15,9 +15,9 @@ async function run() {
     let actionType = tl.getInput("actionType", true) as string;
     let inCreationMode = actionType === "createUpdate";
 
-    let priority = tl.getInput("priority", inCreationMode) as string;
-    let weight = tl.getInput("weight", inCreationMode) as string;
-    let port = tl.getInput("port", inCreationMode) as string;
+    let priority = parseInt(tl.getInput("priority", inCreationMode) as string);
+    let weight = parseInt(tl.getInput("weight", inCreationMode) as string);
+    let port = parseInt(tl.getInput("port", inCreationMode) as string);
     let target = tl.getInput("target", inCreationMode) as string;
 
     let ttl = parseInt(tl.getInput("ttl", inCreationMode) as string);
@@ -73,7 +73,7 @@ async function run() {
         metadata = JSON.parse("{" + mdString + "}");
       }
 
-      const myRecord = { tTL: ttl, srvRecord: { priority: priority, weight: weight, port: port, target: target }, metadata: metadata };   
+      const myRecord = { tTL: ttl, srvRecords:[ { priority: priority, weight: weight, port: port, target: target }], metadata: metadata };   
       await dnsClient.recordSets.createOrUpdate(resourceGroupName, domainName, srv, "SRV", myRecord);
       console.log('Record ' + srv + ' is set');
     } else if(actionType === "remove"){
