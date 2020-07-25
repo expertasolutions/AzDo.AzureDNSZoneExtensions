@@ -21,7 +21,7 @@ stages:
           clean: all
 
     steps:
-    - task: VersionExtractor@4
+    - task: VersionExtractor@5
       displayName: Version extractor digit
       name: buildExtractor
       inputs:
